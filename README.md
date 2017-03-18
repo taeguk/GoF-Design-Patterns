@@ -1,2 +1,2 @@
-# GoF_Design_Pattern
-My example codes for GoF Design Pattern.
+# GoF-Design-Patterns
+My example codes for GoF Design Patterns.

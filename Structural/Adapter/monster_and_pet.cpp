@@ -32,13 +32,6 @@ struct Dragon : public Monster
 	virtual int DefenseAbility() const override { return 500; }
 };
 
-struct Test
-{
-	virtual std::string Name() const { return "Test"; }
-	virtual int AttackAbility() const { return 1000; }
-	virtual int DefenseAbility() const { return 500; }
-};
-
 /* 그리고 태초에 Pet들이 존재했다.. */
 struct Pet
 {

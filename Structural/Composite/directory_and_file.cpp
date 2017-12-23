@@ -4,168 +4,140 @@
 #include <string>
 #include <vector>
 
-class Directory;
-
 class Data
 {
 public:
-    Data(std::string name, const std::shared_ptr<Directory>& parent)
-        : name_(std::move(name)), parent_(parent)
+    explicit Data(const std::string& name)
+        : name_(name)
     {}
     virtual ~Data() = default;
     
-    void Delete();
-    int Size() const
+    virtual std::uint64_t CalculateSize() const = 0;
+
+    // These two functions (AddData, RemoveData) are only for Directory.
+    // I add them into a common base class of both File and Directory
+    //   even though they must not be called from File.
+    // It is for getting extensibility and transparancy instead of type safety.
+    virtual Data* AddData(std::unique_ptr<Data>&& data)
     {
-        if (deleted_)
-        {
-            std::cout << "Cannot get the size of '" << name_ << "' because it was deleted." << std::endl;
-            throw std::logic_error("Cannot get the size because data was deleted.");
-        }
-        return SizeImpl_();
+        throw std::logic_error("AddData() is not supported operation.");
+    }
+    virtual bool RemoveData(Data* dataPtr)
+    {
+        throw std::logic_error("RemoveData() is not supported operation.");
     }
 
     std::string Name() const { return name_; }
 
 private:
-    virtual void DeleteImpl_() = 0;
-    virtual int SizeImpl_() const = 0;
-
     std::string name_;
-    std::weak_ptr<Directory> parent_;
-    bool deleted_{ false };
 };
 
 class Directory : public Data
 {
-    struct PrivateKey {};
-
 public:
-    Directory(PrivateKey, const std::string& name, const std::shared_ptr<Directory>& parent)
-        : Data(name, parent)
+    explicit Directory(const std::string& name)
+        : Data(name)
     {}
 
-    static std::shared_ptr<Directory> Create(const std::string& name, const std::shared_ptr<Directory>& parent)
+    virtual std::uint64_t CalculateSize() const override
     {
-        auto dir = std::make_shared<Directory>(PrivateKey(), name, parent);
-        if (parent)
-            parent->AddData(dir);
-        return dir;
-    }
-
-    void AddData(const std::shared_ptr<Data>& data)
-    {
-        dataList_.push_back(data);
-    }
-
-    void DeleteData(Data* dataPtr)
-    {
-        auto dataIter = std::find_if(std::begin(dataList_), std::end(dataList_), 
-            [dataPtr](const auto& data) {
-                return data.get() == dataPtr;
-        });
-        dataList_.erase(dataIter);
-    }
-
-private:
-    virtual void DeleteImpl_() override
-    {
-        /* // This is wrong.
+        std::uint64_t size = 0u;
         for (const auto& data : dataList_)
-            data->Delete();
-        */
-        while (!dataList_.empty())
-            dataList_[0]->Delete();
-    }
-
-    virtual int SizeImpl_() const override
-    {
-        int size = 0;
-        for (const auto& data : dataList_)
-            size += data->Size();
+            size += data->CalculateSize();
         return size;
     }
 
-    std::vector<std::shared_ptr<Data>> dataList_;
+    virtual Data* AddData(std::unique_ptr<Data>&& data) override
+    {
+        dataList_.push_back(std::move(data));
+        return dataList_.back().get();
+    }
+
+    virtual bool RemoveData(Data* dataPtr) override
+    {
+        auto dataIter = std::find_if(
+            std::begin(dataList_),
+            std::end(dataList_), 
+            [dataPtr](const auto& data) -> bool
+            {
+                return data.get() == dataPtr;
+            });
+
+        if (dataIter == std::end(dataList_))
+            return false;
+
+        dataList_.erase(dataIter);
+        return true;
+    }
+
+private:
+    std::vector<std::unique_ptr<Data>> dataList_;
 };
 
 class File : public Data
 {
-    struct PrivateKey {};
-
 public:
-    File(PrivateKey, const std::string& name, const std::shared_ptr<Directory>& parent, int size)
-        : Data(name, parent), size_(size)
+    File(const std::string& name, std::uint64_t size)
+        : Data(name), size_(size)
     {}
 
-    static std::shared_ptr<File> Create(const std::string& name, const std::shared_ptr<Directory>& parent, int size)
-    {
-        if (!parent)
-            throw std::logic_error("A file must have parent.");
-        auto file = std::make_shared<File>(PrivateKey(), name, parent, size);
-        parent->AddData(file);
-        return file;
-    }
+    virtual std::uint64_t CalculateSize() const override { return size_; }
 
 private:
-    virtual void DeleteImpl_() override {}
-    virtual int SizeImpl_() const override { return size_; }
-
-    int size_;
+    std::uint64_t size_;
 };
 
-void Data::Delete()
+void PrintSize(const Data& data)
 {
-    if (deleted_)
-    {
-        std::cout << "'" << name_ << "' is already deleted." << std::endl;
-    }
-    else
-    {
-        DeleteImpl_();
-        deleted_ = true;
-        if (auto parent = parent_.lock())
-            parent->DeleteData(this);
-        std::cout << "'" << name_ << "' is successfully deleted." << std::endl;
-    }
+    std::cout << "Size of '" << data.Name() << "' = " << data.CalculateSize() << std::endl;
 }
 
-void PrintSize(const std::shared_ptr<Data>& data)
+void RemoveData(Data& dir, Data* data)
 {
-    std::cout << "Size of '" << data->Name() << "' = " << data->Size() << std::endl;
+    auto dataName = data->Name();
+    bool success = dir.RemoveData(data);
+    data = nullptr;
+
+    if (success)
+        std::cout << "Remove '" << dataName << "' from '" << dir.Name() << "'" << std::endl;
+    else
+        std::cout << "Fail to remove '" << dataName << "' from '" << dir.Name() << "'" << std::endl;
 }
 
 int main()
 {
-    auto dirRoot = Directory::Create("Dir:/", nullptr);
-    auto dirA = Directory::Create("Dir:/A/", dirRoot);
-    auto dirAA = Directory::Create("Dir:/A/A/", dirA);
-    auto dirAB = Directory::Create("Dir:/A/B/", dirA);
-    auto dirB = Directory::Create("Dir:/B/", dirRoot);
-    auto dirC = Directory::Create("Dir:/C/", dirRoot);
+    auto dirRoot = Directory("Dir:/");
+    auto dirA = dirRoot.AddData(std::make_unique<Directory>("Dir:/A/"));
+    auto dirAA = dirA->AddData(std::make_unique<Directory>("Dir:/A/A/"));
+    auto dirAB = dirAA->AddData(std::make_unique<Directory>("Dir:/A/B/"));
+    auto dirB = dirRoot.AddData(std::make_unique<Directory>("Dir:/B/"));
+    auto dirC = dirRoot.AddData(std::make_unique<Directory>("Dir:/C/"));
 
-    auto file1 = File::Create("File:/1", dirRoot, 1);
-    auto fileA1 = File::Create("File:/A/1", dirA, 10);
-    auto fileA2 = File::Create("File:/A/2", dirA, 100);
-    auto fileAB1 = File::Create("File:/A/B/1", dirAB, 1000);
-    auto fileC1 = File::Create("File:/C/1", dirC, 10000);
-    auto fileC2 = File::Create("File:/C/2", dirC, 100000);
-    auto fileC3 = File::Create("File:/C/3", dirC, 1000000);
+    auto file1 = dirRoot.AddData(std::make_unique<File>("File:/1", 1));
+    auto fileA1 = dirA->AddData(std::make_unique<File>("File:/A/1", 10));
+    auto fileA2 = dirA->AddData(std::make_unique<File>("File:/A/2", 100));
+    auto fileAB1 = dirAB->AddData(std::make_unique<File>("File:/A/B/1", 1000));
+    auto fileC1 = dirC->AddData(std::make_unique<File>("File:/C/1", 10000));
+    auto fileC2 = dirC->AddData(std::make_unique<File>("File:/C/2", 100000));
+    auto fileC3 = dirC->AddData(std::make_unique<File>("File:/C/3", 1000000));
 
     PrintSize(dirRoot);
     std::cout << "------------------" << std::endl;
-    PrintSize(dirA);
-    PrintSize(fileA2);
-    fileA2->Delete();
-    PrintSize(dirA);
+    PrintSize(*dirA);
+    PrintSize(*fileA2);
+    RemoveData(*dirA, fileA2);
+    PrintSize(*dirA);
     std::cout << "------------------" << std::endl;
-    dirA->Delete();
-    std::cout << "------------------" << std::endl;
-    fileAB1->Delete();
-    std::cout << "------------------" << std::endl;
+    RemoveData(dirRoot, dirA);
     PrintSize(dirRoot);
-    dirRoot->Delete();
     std::cout << "------------------" << std::endl;
-    dirRoot->Delete();
+    PrintSize(*dirB);
+    PrintSize(*dirC);
+    RemoveData(*dirC, fileC3);
+    PrintSize(*dirC);
     std::cout << "------------------" << std::endl;
+    RemoveData(dirRoot, fileC1);
+    RemoveData(dirRoot, dirC);
+    PrintSize(dirRoot);
 }

@@ -1,9 +1,9 @@
-#include <memory>
-#include <vector>
-#include <string>
 #include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
-struct HamburgerIngredient { virtual std::string Name() const = 0; };
+struct HamburgerIngredient { virtual ~HamburgerIngredient() = default; virtual std::string Name() const = 0; };
 
 struct Bread : public HamburgerIngredient { virtual std::string Name() const override { return "Bread"; } };
 struct Patty : public HamburgerIngredient { virtual std::string Name() const override { return "Patty"; } };
@@ -24,158 +24,159 @@ struct CheddarCheese : public Cheese { virtual std::string Name() const override
 struct GarlicSauce : public Sauce { virtual std::string Name() const override { return "GarlicSauce"; } };
 struct MustardSauce : public Sauce { virtual std::string Name() const override { return "MustardSauce"; } };
 
-
-class Hamburger
+class Hamburger final
 {
 public:
-	Hamburger(std::vector<std::unique_ptr<HamburgerIngredient>>&& ingredientList)
-		: m_ingredientList(std::move(ingredientList))
-	{}
+    explicit Hamburger(std::vector<std::unique_ptr<HamburgerIngredient>>&& ingredientList)
+        : ingredientList_(std::move(ingredientList))
+    {}
 
-	void Print() const
-	{
-		std::cout << "----------" << std::endl;
-		for (const auto & ingredient : m_ingredientList)
-			std::cout << ingredient->Name() << std::endl;
-		std::cout << "----------" << std::endl;
-	}
+    void Print() const
+    {
+        std::cout << "----------" << std::endl;
+        for (const auto& ingredient : ingredientList_)
+            std::cout << ingredient->Name() << std::endl;
+        std::cout << "----------" << std::endl;
+    }
 
 private:
-	std::vector<std::unique_ptr<HamburgerIngredient>> m_ingredientList;
+    std::vector<std::unique_ptr<HamburgerIngredient>> ingredientList_;
 };
 
 class HamburgerBuilder
 {
 public:
-	virtual void Initialize() = 0;
+    virtual ~HamburgerBuilder() = default;
 
-	virtual void BuildBread() = 0;
-	virtual void BuildPatty() = 0;
-	virtual void BuildCheese() = 0;
-	virtual void BuildTomato() = 0;
-	virtual void BuildLettuce() = 0;
-	virtual void BuildSauce() = 0;
+    virtual void Initialize() = 0;
 
-	virtual Hamburger GetHamburger() = 0;
+    virtual void BuildBread() = 0;
+    virtual void BuildPatty() = 0;
+    virtual void BuildCheese() = 0;
+    virtual void BuildTomato() = 0;
+    virtual void BuildLettuce() = 0;
+    virtual void BuildSauce() = 0;
+
+    virtual Hamburger GetHamburger() = 0;
 };
 
 class BeefHamburgerBuilder : public HamburgerBuilder
 {
 public:
-	virtual void Initialize() override { m_ingredientList.clear(); }
+    virtual void Initialize() override { ingredientList_.clear(); }
 
-	virtual void BuildBread() override { m_ingredientList.push_back(std::make_unique<LightBread>()); }
-	virtual void BuildPatty() override { m_ingredientList.push_back(std::make_unique<BeefPatty>()); }
-	virtual void BuildCheese() override { m_ingredientList.push_back(std::make_unique<MozzarellaCheese>()); }
-	virtual void BuildTomato() override { m_ingredientList.push_back(std::make_unique<Tomato>()); }
-	virtual void BuildLettuce() override { m_ingredientList.push_back(std::make_unique<Lettuce>()); }
-	virtual void BuildSauce() override { m_ingredientList.push_back(std::make_unique<GarlicSauce>()); }
+    virtual void BuildBread() override { ingredientList_.push_back(std::make_unique<LightBread>()); }
+    virtual void BuildPatty() override { ingredientList_.push_back(std::make_unique<BeefPatty>()); }
+    virtual void BuildCheese() override { ingredientList_.push_back(std::make_unique<MozzarellaCheese>()); }
+    virtual void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
+    virtual void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
+    virtual void BuildSauce() override { ingredientList_.push_back(std::make_unique<GarlicSauce>()); }
 
-	virtual Hamburger GetHamburger() override 
-	{ 
-		Hamburger hamburger(std::move(m_ingredientList));
-		return hamburger;
-	};
+    virtual Hamburger GetHamburger() override 
+    { 
+        Hamburger hamburger(std::move(ingredientList_));
+        return hamburger;
+    };
 
 private:
-	std::vector<std::unique_ptr<HamburgerIngredient>> m_ingredientList;
+    std::vector<std::unique_ptr<HamburgerIngredient>> ingredientList_;
 };
 
 class PorkHamburgerBuilder : public HamburgerBuilder
 {
 public:
-	virtual void Initialize() override { m_ingredientList.clear(); }
+    virtual void Initialize() override { ingredientList_.clear(); }
 
-	virtual void BuildBread() override { m_ingredientList.push_back(std::make_unique<SaltyBread>()); }
-	virtual void BuildPatty() override { m_ingredientList.push_back(std::make_unique<PorkPatty>()); }
-	virtual void BuildCheese() override { m_ingredientList.push_back(std::make_unique<CheddarCheese>()); }
-	virtual void BuildTomato() override { m_ingredientList.push_back(std::make_unique<Tomato>()); }
-	virtual void BuildLettuce() override { m_ingredientList.push_back(std::make_unique<Lettuce>()); }
-	virtual void BuildSauce() override { m_ingredientList.push_back(std::make_unique<MustardSauce>()); }
+    virtual void BuildBread() override { ingredientList_.push_back(std::make_unique<SaltyBread>()); }
+    virtual void BuildPatty() override { ingredientList_.push_back(std::make_unique<PorkPatty>()); }
+    virtual void BuildCheese() override { ingredientList_.push_back(std::make_unique<CheddarCheese>()); }
+    virtual void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
+    virtual void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
+    virtual void BuildSauce() override { ingredientList_.push_back(std::make_unique<MustardSauce>()); }
 
-	virtual Hamburger GetHamburger() override
-	{
-		Hamburger hamburger(std::move(m_ingredientList));
-		return hamburger;
-	};
+    virtual Hamburger GetHamburger() override
+    {
+        Hamburger hamburger(std::move(ingredientList_));
+        return hamburger;
+    };
 
 private:
-	std::vector<std::unique_ptr<HamburgerIngredient>> m_ingredientList;
+    std::vector<std::unique_ptr<HamburgerIngredient>> ingredientList_;
 };
 
-class HamburgerHouse
+class HamburgerHouse final
 {
 public:
-	HamburgerHouse(std::unique_ptr<HamburgerBuilder>&& builder)
-		: m_builder(std::move(builder))
-	{}
+    explicit HamburgerHouse(std::unique_ptr<HamburgerBuilder>&& builder)
+        : builder_(std::move(builder))
+    {}
 
-	void ChangeBuilder(std::unique_ptr<HamburgerBuilder>&& builder) { m_builder = std::move(builder); }
+    void ChangeBuilder(std::unique_ptr<HamburgerBuilder>&& builder) { builder_ = std::move(builder); }
 
-	Hamburger MakeCheeseBurger()
-	{
-		m_builder->Initialize();
+    Hamburger MakeCheeseBurger()
+    {
+        builder_->Initialize();
 
-		m_builder->BuildBread();
-		m_builder->BuildLettuce();
-		m_builder->BuildSauce();
-		m_builder->BuildPatty();
-		m_builder->BuildCheese();
-		m_builder->BuildBread();
+        builder_->BuildBread();
+        builder_->BuildLettuce();
+        builder_->BuildSauce();
+        builder_->BuildPatty();
+        builder_->BuildCheese();
+        builder_->BuildBread();
 
-		return m_builder->GetHamburger();
-	}
+        return builder_->GetHamburger();
+    }
 
-	Hamburger MakeJumboBurger()
-	{
-		m_builder->Initialize();
+    Hamburger MakeJumboBurger()
+    {
+        builder_->Initialize();
 
-		m_builder->BuildBread();
-		m_builder->BuildLettuce();
-		m_builder->BuildSauce();
-		m_builder->BuildPatty();
-		m_builder->BuildCheese();
-		m_builder->BuildBread();
-		m_builder->BuildLettuce();
-		m_builder->BuildSauce();
-		m_builder->BuildPatty();
-		m_builder->BuildCheese();
-		m_builder->BuildBread();
+        builder_->BuildBread();
+        builder_->BuildLettuce();
+        builder_->BuildSauce();
+        builder_->BuildPatty();
+        builder_->BuildCheese();
+        builder_->BuildBread();
+        builder_->BuildLettuce();
+        builder_->BuildSauce();
+        builder_->BuildPatty();
+        builder_->BuildCheese();
+        builder_->BuildBread();
 
-		return m_builder->GetHamburger();
-	}
+        return builder_->GetHamburger();
+    }
 
 private:
-	std::unique_ptr<HamburgerBuilder> m_builder;
+    std::unique_ptr<HamburgerBuilder> builder_;
 };
 
 /*
-	복합 객체의 생성 알고리즘과 합성되는 요소 객체들의 조립 방법이 독립적이고,
-		합성과정을 숨기고 싶고, 복잡한 객체를 단계적으로 생성하고 싶을 경우에,
-		Builder Pattern이 어울립니다.
+    복합 객체의 생성 알고리즘과 합성되는 요소 객체들의 조립 방법이 독립적이고,
+        합성과정을 숨기고 싶고, 복잡한 객체를 단계적으로 생성하고 싶을 경우에,
+        Builder Pattern이 어울립니다.
 
-	복잡한 객체를 생성해야 할 때, Builder 패턴과 Abstract Factory 패턴은 어느정도 유사한 점이 있습니다.
-	만약, 생성과정(요소 객체들의 합성과정)들을 숨기고 싶고, 복잡한 객체가 완성된 후 반환되어야 하는 경우라면,
-		Builder Pattern 이 더 어울립니다.
+    복잡한 객체를 생성해야 할 때, Builder 패턴과 Abstract Factory 패턴은 어느정도 유사한 점이 있습니다.
+    만약, 생성과정(요소 객체들의 합성과정)들을 숨기고 싶고, 복잡한 객체가 완성된 후 반환되어야 하는 경우라면,
+        Builder Pattern 이 더 어울립니다.
 */
 
 int main()
 {
-	HamburgerHouse macdoria(std::make_unique<BeefHamburgerBuilder>());
+    HamburgerHouse macdoria(std::make_unique<BeefHamburgerBuilder>());
 
-	std::cout << "======== Beef Based Hamburger House ========" << std::endl;
-	std::cout << "* Let's make a cheese burger" << std::endl;
-	macdoria.MakeCheeseBurger().Print();
-	std::cout << "* Let's make a jumbo burger" << std::endl;
-	macdoria.MakeJumboBurger().Print();
+    std::cout << "======== Beef Based Hamburger House ========" << std::endl;
+    std::cout << "* Let's make a cheese burger" << std::endl;
+    macdoria.MakeCheeseBurger().Print();
+    std::cout << "* Let's make a jumbo burger" << std::endl;
+    macdoria.MakeJumboBurger().Print();
 
-	macdoria.ChangeBuilder(std::make_unique<PorkHamburgerBuilder>());
-	std::cout << std::endl;
-	std::cout << "======== Pork Based Hamburger House ========" << std::endl;
-	std::cout << "* Let's make a cheese burger" << std::endl;
-	macdoria.MakeCheeseBurger().Print();
-	std::cout << "* Let's make a jumbo burger" << std::endl;
-	macdoria.MakeJumboBurger().Print();
+    macdoria.ChangeBuilder(std::make_unique<PorkHamburgerBuilder>());
+    std::cout << std::endl;
+    std::cout << "======== Pork Based Hamburger House ========" << std::endl;
+    std::cout << "* Let's make a cheese burger" << std::endl;
+    macdoria.MakeCheeseBurger().Print();
+    std::cout << "* Let's make a jumbo burger" << std::endl;
+    macdoria.MakeJumboBurger().Print();
 
-	return 0;
+    return 0;
 }

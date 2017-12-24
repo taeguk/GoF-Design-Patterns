@@ -5,24 +5,24 @@
 
 struct HamburgerIngredient { virtual ~HamburgerIngredient() = default; virtual std::string Name() const = 0; };
 
-struct Bread : public HamburgerIngredient { virtual std::string Name() const override { return "Bread"; } };
-struct Patty : public HamburgerIngredient { virtual std::string Name() const override { return "Patty"; } };
-struct Cheese : public HamburgerIngredient { virtual std::string Name() const override { return "Cheese"; } };
-struct Tomato : public HamburgerIngredient { virtual std::string Name() const override { return "Tomato"; } };
-struct Lettuce : public HamburgerIngredient { virtual std::string Name() const override { return "Lettuce"; } };
-struct Sauce : public HamburgerIngredient { virtual std::string Name() const override { return "Sauce"; } };
+struct Bread : public HamburgerIngredient { std::string Name() const override { return "Bread"; } };
+struct Patty : public HamburgerIngredient { std::string Name() const override { return "Patty"; } };
+struct Cheese : public HamburgerIngredient { std::string Name() const override { return "Cheese"; } };
+struct Tomato : public HamburgerIngredient { std::string Name() const override { return "Tomato"; } };
+struct Lettuce : public HamburgerIngredient { std::string Name() const override { return "Lettuce"; } };
+struct Sauce : public HamburgerIngredient { std::string Name() const override { return "Sauce"; } };
 
-struct LightBread : public Bread { virtual std::string Name() const override { return "LightBread"; } };
-struct SaltyBread : public Bread { virtual std::string Name() const override { return "SaltyBread"; } };
+struct LightBread : public Bread { std::string Name() const override { return "LightBread"; } };
+struct SaltyBread : public Bread { std::string Name() const override { return "SaltyBread"; } };
 
-struct BeefPatty : public Patty { virtual std::string Name() const override { return "BeefPatty"; } };
-struct PorkPatty : public Patty { virtual std::string Name() const override { return "PorkPatty"; } };
+struct BeefPatty : public Patty { std::string Name() const override { return "BeefPatty"; } };
+struct PorkPatty : public Patty { std::string Name() const override { return "PorkPatty"; } };
 
-struct MozzarellaCheese : public Cheese { virtual std::string Name() const override { return "MozzarellaCheese"; } };
-struct CheddarCheese : public Cheese { virtual std::string Name() const override { return "CheddarCheese"; } };
+struct MozzarellaCheese : public Cheese { std::string Name() const override { return "MozzarellaCheese"; } };
+struct CheddarCheese : public Cheese { std::string Name() const override { return "CheddarCheese"; } };
 
-struct GarlicSauce : public Sauce { virtual std::string Name() const override { return "GarlicSauce"; } };
-struct MustardSauce : public Sauce { virtual std::string Name() const override { return "MustardSauce"; } };
+struct GarlicSauce : public Sauce { std::string Name() const override { return "GarlicSauce"; } };
+struct MustardSauce : public Sauce { std::string Name() const override { return "MustardSauce"; } };
 
 class Hamburger final
 {
@@ -63,16 +63,16 @@ public:
 class BeefHamburgerBuilder : public HamburgerBuilder
 {
 public:
-    virtual void Initialize() override { ingredientList_.clear(); }
+    void Initialize() override { ingredientList_.clear(); }
 
-    virtual void BuildBread() override { ingredientList_.push_back(std::make_unique<LightBread>()); }
-    virtual void BuildPatty() override { ingredientList_.push_back(std::make_unique<BeefPatty>()); }
-    virtual void BuildCheese() override { ingredientList_.push_back(std::make_unique<MozzarellaCheese>()); }
-    virtual void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
-    virtual void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
-    virtual void BuildSauce() override { ingredientList_.push_back(std::make_unique<GarlicSauce>()); }
+    void BuildBread() override { ingredientList_.push_back(std::make_unique<LightBread>()); }
+    void BuildPatty() override { ingredientList_.push_back(std::make_unique<BeefPatty>()); }
+    void BuildCheese() override { ingredientList_.push_back(std::make_unique<MozzarellaCheese>()); }
+    void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
+    void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
+    void BuildSauce() override { ingredientList_.push_back(std::make_unique<GarlicSauce>()); }
 
-    virtual Hamburger GetHamburger() override 
+    Hamburger GetHamburger() override 
     { 
         Hamburger hamburger(std::move(ingredientList_));
         return hamburger;
@@ -85,16 +85,16 @@ private:
 class PorkHamburgerBuilder : public HamburgerBuilder
 {
 public:
-    virtual void Initialize() override { ingredientList_.clear(); }
+    void Initialize() override { ingredientList_.clear(); }
 
-    virtual void BuildBread() override { ingredientList_.push_back(std::make_unique<SaltyBread>()); }
-    virtual void BuildPatty() override { ingredientList_.push_back(std::make_unique<PorkPatty>()); }
-    virtual void BuildCheese() override { ingredientList_.push_back(std::make_unique<CheddarCheese>()); }
-    virtual void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
-    virtual void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
-    virtual void BuildSauce() override { ingredientList_.push_back(std::make_unique<MustardSauce>()); }
+    void BuildBread() override { ingredientList_.push_back(std::make_unique<SaltyBread>()); }
+    void BuildPatty() override { ingredientList_.push_back(std::make_unique<PorkPatty>()); }
+    void BuildCheese() override { ingredientList_.push_back(std::make_unique<CheddarCheese>()); }
+    void BuildTomato() override { ingredientList_.push_back(std::make_unique<Tomato>()); }
+    void BuildLettuce() override { ingredientList_.push_back(std::make_unique<Lettuce>()); }
+    void BuildSauce() override { ingredientList_.push_back(std::make_unique<MustardSauce>()); }
 
-    virtual Hamburger GetHamburger() override
+    Hamburger GetHamburger() override
     {
         Hamburger hamburger(std::move(ingredientList_));
         return hamburger;

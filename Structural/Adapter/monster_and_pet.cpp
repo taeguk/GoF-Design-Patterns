@@ -16,25 +16,25 @@ public:
 class Slime : public Monster
 {
 public:
-    virtual std::string Name() const override { return "Slime"; }
-    virtual int AttackAbility() const override { return 6; }
-    virtual int DefenseAbility() const override { return 20; }
+    std::string Name() const override { return "Slime"; }
+    int AttackAbility() const override { return 6; }
+    int DefenseAbility() const override { return 20; }
 };
 
 class Goblin : public Monster
 {
 public:
-    virtual std::string Name() const override { return "Goblin"; }
-    virtual int AttackAbility() const override { return 30; }
-    virtual int DefenseAbility() const override { return 10; }
+    std::string Name() const override { return "Goblin"; }
+    int AttackAbility() const override { return 30; }
+    int DefenseAbility() const override { return 10; }
 };
 
 class Dragon : public Monster
 {
 public:
-    virtual std::string Name() const override { return "Dragon"; }
-    virtual int AttackAbility() const override { return 1000; }
-    virtual int DefenseAbility() const override { return 500; }
+    std::string Name() const override { return "Dragon"; }
+    int AttackAbility() const override { return 1000; }
+    int DefenseAbility() const override { return 500; }
 };
 
 /* 그리고 태초에 Pet들이 존재했다.. */
@@ -50,17 +50,17 @@ public:
 class Puppy : public Pet
 {
 public:
-    virtual std::string Name() const override { return "Puppy"; }
-    virtual int CutenessAbility() const override { return 50; }
-    virtual int BattleBonus() const override { return 5; }
+    std::string Name() const override { return "Puppy"; }
+    int CutenessAbility() const override { return 50; }
+    int BattleBonus() const override { return 5; }
 };
 
 class Cat : public Pet
 {
 public:
-    virtual std::string Name() const override { return "Cat"; }
-    virtual int CutenessAbility() const override { return 40; }
-    virtual int BattleBonus() const override { return 10; }
+    std::string Name() const override { return "Cat"; }
+    int CutenessAbility() const override { return 40; }
+    int BattleBonus() const override { return 10; }
 };
 
 /*** 그러나 게임이 업데이트되면서 Monster들도 Pet이 될 수 있게 되었다면?! 
@@ -75,9 +75,9 @@ template <typename MonsterType,
 class PetAdapterStatic : public Pet
 {
 public:
-    virtual std::string Name() const override { return monster_.Name(); }
-    virtual int CutenessAbility() const override { return monster_.DefenseAbility() - 2 * monster_.AttackAbility(); }
-    virtual int BattleBonus() const override { return monster_.AttackAbility() + monster_.DefenseAbility() / 2; }
+    std::string Name() const override { return monster_.Name(); }
+    int CutenessAbility() const override { return monster_.DefenseAbility() - 2 * monster_.AttackAbility(); }
+    int BattleBonus() const override { return monster_.AttackAbility() + monster_.DefenseAbility() / 2; }
 
 private:
     MonsterType monster_;
@@ -102,9 +102,9 @@ public:
         return returnedMonster;
     }
 
-    virtual std::string Name() const override { return monster_->Name(); }
-    virtual int CutenessAbility() const override { return monster_->DefenseAbility() - 2 * monster_->AttackAbility(); }
-    virtual int BattleBonus() const override { return monster_->AttackAbility() + monster_->DefenseAbility() / 2; }
+    std::string Name() const override { return monster_->Name(); }
+    int CutenessAbility() const override { return monster_->DefenseAbility() - 2 * monster_->AttackAbility(); }
+    int BattleBonus() const override { return monster_->AttackAbility() + monster_->DefenseAbility() / 2; }
 
 private:
     std::unique_ptr<Monster> monster_;

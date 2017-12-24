@@ -25,32 +25,32 @@ public:
 class WhiteTheme : public Theme
 {
 public:
-    virtual std::string Name() const override { return "White Theme"; }
-    virtual Color WallColor() const override { return Color(255, 255, 255); }
-    virtual Color FloorColor() const override { return Color(255, 255, 255); }
-    virtual Color CeilingColor() const override { return Color(255, 255, 255); }
+    std::string Name() const override { return "White Theme"; }
+    Color WallColor() const override { return { 255, 255, 255 }; }
+    Color FloorColor() const override { return { 255, 255, 255 }; }
+    Color CeilingColor() const override { return { 255, 255, 255 }; }
 };
 
 class DarkTheme : public Theme
 {
 public:
-    virtual std::string Name() const override { return "Dark Theme"; }
-    virtual Color WallColor() const override { return Color(0, 0, 0); }
-    virtual Color FloorColor() const override { return Color(0, 0, 0); }
-    virtual Color CeilingColor() const override { return Color(0, 0, 0); }
+    std::string Name() const override { return "Dark Theme"; }
+    Color WallColor() const override { return { 0, 0, 0 }; }
+    Color FloorColor() const override { return { 0, 0, 0 }; }
+    Color CeilingColor() const override { return { 0, 0, 0 }; }
 };
 
 class CustomTheme : public Theme
 {
 public:
     CustomTheme(std::string name, Color wallColor, Color floorColor, Color ceilingColor)
-        : name_(name), wallColor_(wallColor), floorColor_(floorColor), ceilingColor_(ceilingColor)
+        : name_(std::move(name)), wallColor_(wallColor), floorColor_(floorColor), ceilingColor_(ceilingColor)
     {}
 
-    virtual std::string Name() const override { return name_; }
-    virtual Color WallColor() const override { return wallColor_; }
-    virtual Color FloorColor() const override { return floorColor_; }
-    virtual Color CeilingColor() const override { return ceilingColor_; }
+    std::string Name() const override { return name_; }
+    Color WallColor() const override { return wallColor_; }
+    Color FloorColor() const override { return floorColor_; }
+    Color CeilingColor() const override { return ceilingColor_; }
 
 private:
     std::string name_;
@@ -60,8 +60,8 @@ private:
 class House
 {
 public:
-    explicit House(const std::shared_ptr<Theme>& theme)
-        : theme_(theme)
+    explicit House(std::shared_ptr<Theme> theme)
+        : theme_(std::move(theme))
     {}
     virtual ~House() = default;
 
@@ -89,7 +89,7 @@ public:
         : House(theme)
     {}
 
-    virtual std::string Name() const override { return "One Room"; }
+    std::string Name() const override { return "One Room"; }
 };
 
 class Apartment : public House
@@ -99,7 +99,7 @@ public:
         : House(theme)
     {}
 
-    virtual std::string Name() const override { return "Apartment"; }
+    std::string Name() const override { return "Apartment"; }
 };
 
 class Castle : public House
@@ -109,7 +109,7 @@ public:
         : House(theme)
     {}
 
-    virtual std::string Name() const override { return "Castle"; }
+    std::string Name() const override { return "Castle"; }
 };
 
 /*

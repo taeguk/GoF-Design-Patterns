@@ -6,13 +6,13 @@
 struct Weapon { virtual ~Weapon() = default; virtual std::string Name() const = 0; };
 struct Vehicle { virtual ~Vehicle() = default; virtual std::string Name() const = 0; };
 
-struct Knife : public Weapon { virtual std::string Name() const override { return "Knife"; } };
-struct Gun : public Weapon { virtual std::string Name() const override { return "Gun"; } };
-struct Missile : public Weapon { virtual std::string Name() const override { return "Missile"; } };
+struct Knife : public Weapon { std::string Name() const override { return "Knife"; } };
+struct Gun : public Weapon { std::string Name() const override { return "Gun"; } };
+struct Missile : public Weapon { std::string Name() const override { return "Missile"; } };
 
-struct Horse : public Vehicle { virtual std::string Name() const override { return "Horse"; } };
-struct Tank : public Vehicle { virtual std::string Name() const override { return "Tank"; } };
-struct Spaceship : public Vehicle { virtual std::string Name() const override { return "Spaceship"; } };
+struct Horse : public Vehicle { std::string Name() const override { return "Horse"; } };
+struct Tank : public Vehicle { std::string Name() const override { return "Tank"; } };
+struct Spaceship : public Vehicle { std::string Name() const override { return "Spaceship"; } };
 
 struct WeaponCreator
     { virtual ~WeaponCreator() = default; virtual std::unique_ptr<Weapon> MakeWeapon() const = 0; };
@@ -20,18 +20,18 @@ struct VehicleCreator
     { virtual ~VehicleCreator() = default; virtual std::unique_ptr<Vehicle> MakeVehicle() const = 0; };
 
 struct KnifeCreator : public WeaponCreator
-    { virtual std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Knife>(); } };
+    { std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Knife>(); } };
 struct GunCreator : public WeaponCreator
-    { virtual std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Gun>(); } };
+    { std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Gun>(); } };
 struct MissileCreator : public WeaponCreator
-    { virtual std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Missile>(); } };
+    { std::unique_ptr<Weapon> MakeWeapon() const override { return std::make_unique<Missile>(); } };
 
 struct HorseCreator : public VehicleCreator
-    { virtual std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Horse>(); } };
+    { std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Horse>(); } };
 struct TankCreator : public VehicleCreator
-    { virtual std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Tank>(); } };
+    { std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Tank>(); } };
 struct SpaceshipCreator : public VehicleCreator
-    { virtual std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Spaceship>(); } };
+    { std::unique_ptr<Vehicle> MakeVehicle() const override { return std::make_unique<Spaceship>(); } };
 
 class MunitionStore final
 {

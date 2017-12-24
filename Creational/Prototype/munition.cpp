@@ -14,20 +14,20 @@ public:
 class Knife : public Weapon
 {
 public:
-    virtual std::string Name() const override { return "Knife"; }
-    virtual std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Knife>(*this); }
+    std::string Name() const override { return "Knife"; }
+    std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Knife>(*this); }
 };
 class Gun : public Weapon
 {
 public:
-    virtual std::string Name() const override { return "Gun"; }
-    virtual std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Gun>(*this); }
+    std::string Name() const override { return "Gun"; }
+    std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Gun>(*this); }
 };
 class Missile : public Weapon
 {
 public:
-    virtual std::string Name() const override { return "Missile"; }
-    virtual std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Missile>(*this); }
+    std::string Name() const override { return "Missile"; }
+    std::unique_ptr<Weapon> Clone() const override { return std::make_unique<Missile>(*this); }
 };
 
 class Vehicle
@@ -41,20 +41,20 @@ public:
 class Horse : public Vehicle
 {
 public:
-    virtual std::string Name() const override { return "Horse"; }
-    virtual std::unique_ptr<Vehicle> Clone() const { return std::make_unique<Horse>(*this); }
+    std::string Name() const override { return "Horse"; }
+    std::unique_ptr<Vehicle> Clone() const override { return std::make_unique<Horse>(*this); }
 };
 class Tank : public Vehicle
 {
 public:
-    virtual std::string Name() const override { return "Tank"; }
-    virtual std::unique_ptr<Vehicle> Clone() const { return std::make_unique<Tank>(*this); }
+    std::string Name() const override { return "Tank"; }
+    std::unique_ptr<Vehicle> Clone() const override { return std::make_unique<Tank>(*this); }
 };
 class Spaceship : public Vehicle
 {
 public:
-    virtual std::string Name() const override { return "Spaceship"; }
-    virtual std::unique_ptr<Vehicle> Clone() const { return std::make_unique<Spaceship>(*this); }
+    std::string Name() const override { return "Spaceship"; }
+    std::unique_ptr<Vehicle> Clone() const override { return std::make_unique<Spaceship>(*this); }
 };
 
 class MunitionStore final

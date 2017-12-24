@@ -7,8 +7,8 @@
 class Data
 {
 public:
-    explicit Data(const std::string& name)
-        : name_(name)
+    explicit Data(std::string name)
+        : name_(std::move(name))
     {}
     virtual ~Data() = default;
     
@@ -20,10 +20,12 @@ public:
     // It is for getting extensibility and transparancy instead of type safety.
     virtual Data* AddData(std::unique_ptr<Data>&& data)
     {
+        (void) data;
         throw std::logic_error("AddData() is not supported operation.");
     }
     virtual bool RemoveData(Data* dataPtr)
     {
+        (void) dataPtr;
         throw std::logic_error("RemoveData() is not supported operation.");
     }
 
@@ -40,7 +42,7 @@ public:
         : Data(name)
     {}
 
-    virtual std::uint64_t CalculateSize() const override
+    std::uint64_t CalculateSize() const override
     {
         std::uint64_t size = 0u;
         for (const auto& data : dataList_)
@@ -48,13 +50,13 @@ public:
         return size;
     }
 
-    virtual Data* AddData(std::unique_ptr<Data>&& data) override
+    Data* AddData(std::unique_ptr<Data>&& data) override
     {
         dataList_.push_back(std::move(data));
         return dataList_.back().get();
     }
 
-    virtual bool RemoveData(Data* dataPtr) override
+    bool RemoveData(Data* dataPtr) override
     {
         auto dataIter = std::find_if(
             std::begin(dataList_),
@@ -82,7 +84,7 @@ public:
         : Data(name), size_(size)
     {}
 
-    virtual std::uint64_t CalculateSize() const override { return size_; }
+    std::uint64_t CalculateSize() const override { return size_; }
 
 private:
     std::uint64_t size_;

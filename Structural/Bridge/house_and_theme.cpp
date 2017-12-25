@@ -113,7 +113,11 @@ public:
 };
 
 /*
-    Bridge Pattern은 두 개의 클래스 계통을 분리시킬 수 있는 장점이 있습니다.
+    Bridge 패턴은 interface와 implementation을 분리하는 용도로 사용됩니다.
+    사용자에게 상세한 구현 내용을 은닉할 수 있는 장점이 있습니다. 
+    또한, interface와 implementation 사이의 종속 관계를 피할 수 있게 되고, 
+    런타임에 implementation을 변경하는 것이 가능해지는 등의 장점이 있습니다.
+
     만약, 이 예제에서 bridge 패턴을 사용하지 않았다면,
 
            House
@@ -131,11 +135,6 @@ OneRoom  Apartment  Castle
     이에 따라 House 계통과 Theme 계통을 독립적으로 확장할 수 있습니다.
     또한, 런타임에 theme를 변경하는 것이 가능해지고, 
     동일한 theme를 여러 개의 house에서 공유하는 것이 가능해집니다.
-
-    Bridge 패턴은 interface와 implementation을 분리하는 용도로도 사용가능합니다.
-    이 경우, 사용자에게 상세한 구현 내용을 은닉할 수 있는 장점이 있습니다. 
-    또한, interface와 implementation 사이의 종속 관계를 피할 수 있게 되고, 
-    런타임에 implementation을 변경하는 것이 가능해지는 등의 장점이 있습니다.
 */
 
 int main()

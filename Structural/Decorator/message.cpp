@@ -16,7 +16,7 @@ public:
 class TextMessage : public Message
 {
 public:
-    TextMessage(std::string content)
+    explicit TextMessage(std::string content)
         : content_(std::move(content))
     {}
 
@@ -37,7 +37,7 @@ private:
 class ImageMessage : public Message
 {
 public:
-    ImageMessage(std::string imageFileName)
+    explicit ImageMessage(std::string imageFileName)
         : imageFileName_(std::move(imageFileName))
     {}
 
@@ -58,7 +58,7 @@ private:
 class MessageDecorator : public Message
 {
 public:
-    MessageDecorator(std::unique_ptr<Message>&& message)
+    explicit MessageDecorator(std::unique_ptr<Message>&& message)
         : message_(std::move(message))
     {}
 
@@ -71,12 +71,13 @@ public:
     std::string Serialize() const final
     {
         std::string buffer = message_->Serialize();
-        return SerializeImpl_(std::move(buffer));
+        SerializeImpl_(buffer);
+        return buffer;
     }
 
 private:
     virtual void PrintLayerImpl_() const = 0;
-    virtual std::string SerializeImpl_(std::string&& buffer) const = 0;
+    virtual void SerializeImpl_(std::string& buffer) const = 0;
 
     std::unique_ptr<Message> message_;
 };
@@ -84,45 +85,39 @@ private:
 class EncryptionMessageDecorator : public MessageDecorator
 {
 public:
-    EncryptionMessageDecorator(std::unique_ptr<Message>&& message)
-        : MessageDecorator(std::move(message))
-    {}
+    using MessageDecorator::MessageDecorator;
 
+private:
     void PrintLayerImpl_() const override
     {
         std::cout << "Encrypt Message" << std::endl;
     }
 
-    std::string SerializeImpl_(std::string&& buffer) const override
+    void SerializeImpl_(std::string& buffer) const override
     {
         std::rotate(
             std::begin(buffer),
             std::next(std::begin(buffer), buffer.length() / 2),
             std::end(buffer));
-
-        return std::move(buffer);
     }
 };
 
 class CompressionMessageDecorator : public MessageDecorator
 {
 public:
-    CompressionMessageDecorator(std::unique_ptr<Message>&& message)
-        : MessageDecorator(std::move(message))
-    {}
+    using MessageDecorator::MessageDecorator;
 
+private:
     void PrintLayerImpl_() const override
     {
         std::cout << "Compress Message" << std::endl;
     }
 
-    std::string SerializeImpl_(std::string&& buffer) const override
+    void SerializeImpl_(std::string& buffer) const override
     {
         buffer.erase(
             std::unique(std::begin(buffer), std::end(buffer)),
             std::end(buffer));
-
-        return std::move(buffer);
     }
 };
 

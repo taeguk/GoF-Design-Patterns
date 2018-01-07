@@ -85,9 +85,7 @@ private:
 class OneRoom : public House
 {
 public:
-    explicit OneRoom(const std::shared_ptr<Theme>& theme)
-        : House(theme)
-    {}
+    using House::House;
 
     std::string Name() const override { return "One Room"; }
 };
@@ -95,9 +93,7 @@ public:
 class Apartment : public House
 {
 public:
-    explicit Apartment(const std::shared_ptr<Theme>& theme)
-        : House(theme)
-    {}
+    using House::House;
 
     std::string Name() const override { return "Apartment"; }
 };
@@ -105,9 +101,7 @@ public:
 class Castle : public House
 {
 public:
-    explicit Castle(const std::shared_ptr<Theme>& theme)
-        : House(theme)
-    {}
+    using House::House;
 
     std::string Name() const override { return "Castle"; }
 };

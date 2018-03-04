@@ -62,12 +62,14 @@ public:
         : message_(std::move(message))
     {}
 
+    /* 기존의 로직이 반드시 수행되는 걸 보장하기 위해서 NVI 패턴 사용 */
     void PrintLayer() const final
     {
         message_->PrintLayer();
         PrintLayerImpl_();
     }
 
+    /* 기존의 로직이 반드시 수행되는 걸 보장하기 위해서 NVI 패턴 사용 */
     std::string Serialize() const final
     {
         std::string buffer = message_->Serialize();

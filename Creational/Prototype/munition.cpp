@@ -75,7 +75,7 @@ private:
     std::unique_ptr<Vehicle> vehicle_;
 };
 
-void PrintStore(const MunitionStore& store)
+void PrintStore(MunitionStore const& store)
 {
     std::cout << "---- Infomation ----" << std::endl;
     std::cout << "Weapon  : " << store.MakeWeapon()->Name() << std::endl;

@@ -45,7 +45,7 @@ public:
     std::uint64_t CalculateSize() const override
     {
         std::uint64_t size = 0u;
-        for (const auto& data : dataList_)
+        for (auto const& data : dataList_)
             size += data->CalculateSize();
         return size;
     }
@@ -61,7 +61,7 @@ public:
         auto dataIter = std::find_if(
             std::begin(dataList_),
             std::end(dataList_), 
-            [dataPtr](const auto& data) -> bool
+            [dataPtr](auto const& data) -> bool
             {
                 return data.get() == dataPtr;
             });
@@ -80,7 +80,7 @@ private:
 class File : public Data
 {
 public:
-    File(const std::string& name, std::uint64_t size)
+    File(std::string const& name, std::uint64_t size)
         : Data(name), size_(size)
     {}
 
@@ -90,7 +90,7 @@ private:
     std::uint64_t size_;
 };
 
-void PrintSize(const Data& data)
+void PrintSize(Data const& data)
 {
     std::cout << "Size of '" << data.Name() << "' = " << data.CalculateSize() << std::endl;
 }

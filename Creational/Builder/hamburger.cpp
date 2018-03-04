@@ -34,7 +34,7 @@ public:
     void Print() const
     {
         std::cout << "----------" << std::endl;
-        for (const auto& ingredient : ingredientList_)
+        for (auto const& ingredient : ingredientList_)
             std::cout << ingredient->Name() << std::endl;
         std::cout << "----------" << std::endl;
     }

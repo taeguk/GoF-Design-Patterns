@@ -14,9 +14,9 @@ public:
         return instance;
     }
 
-    Singleton(const Singleton&) = delete;
-    Singleton& operator=(const Singleton&) = delete;
-    Singleton(const Singleton&&) = delete;
+    Singleton(Singleton const&) = delete;
+    Singleton& operator=(Singleton const&) = delete;
+    Singleton(Singleton&&) = delete;
     Singleton& operator=(Singleton&&) = delete;
 
 private:

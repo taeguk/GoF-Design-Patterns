@@ -110,7 +110,7 @@ private:
     std::unique_ptr<Monster> monster_;
 };
 
-void PrintMonster(const Monster& monster)
+void PrintMonster(Monster const& monster)
 {
     std::cout << "---- Infomation ----" << std::endl;
     std::cout << "Name             : " << monster.Name() << std::endl;
@@ -119,7 +119,7 @@ void PrintMonster(const Monster& monster)
     std::cout << "--------------------" << std::endl;
 }
 
-void PrintPet(const Pet& pet)
+void PrintPet(Pet const& pet)
 {
     std::cout << "---- Infomation ----" << std::endl;
     std::cout << "Name             : " << pet.Name() << std::endl;

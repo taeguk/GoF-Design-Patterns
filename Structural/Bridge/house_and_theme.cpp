@@ -67,7 +67,7 @@ public:
 
     virtual std::string Name() const = 0;
 
-    void ChangeTheme(const std::shared_ptr<Theme>& theme) 
+    void ChangeTheme(std::shared_ptr<Theme> const& theme) 
     {
         std::cout << Name() << " changes theme to '" << theme->Name() << "'." << std::endl;
         theme_ = theme; 

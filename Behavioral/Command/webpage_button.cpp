@@ -1,8 +1,5 @@
 #include <iostream>
-#include <functional>
-#include <memory>
 #include <string>
-#include <vector>
 
 /* Receiver (실제 요청을 처리할 책임을 지는 객체) */
 class WebPageManager

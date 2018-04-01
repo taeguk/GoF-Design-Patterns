@@ -3,6 +3,8 @@
 #include <vector>
 #include <map>
 
+#include "../../AccessKey.h"
+
 class EstateOwner;
 class GroceryStore;
 class Restaurant;
@@ -28,19 +30,20 @@ private:
 class EstateOwner
 {
 public:
-    BusinessMediator* SetBusinessMediator(BusinessMediator* mediator)
-    {
-        BusinessMediator* old = mediator_;
-        mediator_ = mediator;
-        return old;
-    }
-
     std::int32_t SetEstateRentPrice(std::int32_t price)
     {
         auto oldPrice = estateRentPrice_;
         estateRentPrice_ = price;
         if (mediator_) mediator_->EstateRentPriceChanged(oldPrice, price);
         return oldPrice;
+    }
+    
+    BusinessMediator* SetBusinessMediator(design::AccessKey<BusinessMediator>,
+                                          BusinessMediator* mediator)
+    {
+        BusinessMediator* old = mediator_;
+        mediator_ = mediator;
+        return old;
     }
 
 private:
@@ -52,13 +55,6 @@ private:
 class GroceryStore
 {
 public:
-    BusinessMediator* SetBusinessMediator(BusinessMediator* mediator)
-    {
-        BusinessMediator* old = mediator_;
-        mediator_ = mediator;
-        return old;
-    }
-
     std::int32_t Supply(std::uint16_t count)
     {
         stock_ += count;
@@ -86,6 +82,14 @@ public:
         return price_;
     }
 
+    BusinessMediator* SetBusinessMediator(design::AccessKey<BusinessMediator>,
+                                          BusinessMediator* mediator)
+    {
+        BusinessMediator* old = mediator_;
+        mediator_ = mediator;
+        return old;
+    }
+
 private:
     BusinessMediator* mediator_{ nullptr };
     std::int32_t stock_{ 0 };
@@ -96,13 +100,6 @@ private:
 class Restaurant
 {
 public:
-    BusinessMediator* SetBusinessMediator(BusinessMediator* mediator)
-    {
-        BusinessMediator* old = mediator_;
-        mediator_ = mediator;
-        return old;
-    }
-
     std::int32_t CookFood()
     {
         if (isOpened_)
@@ -122,7 +119,16 @@ public:
         return price_;
     }
 
-    void SetIsOpened(bool isOpened)
+    BusinessMediator* SetBusinessMediator(design::AccessKey<BusinessMediator>,
+                                          BusinessMediator* mediator)
+    {
+        BusinessMediator* old = mediator_;
+        mediator_ = mediator;
+        return old;
+    }
+
+    void SetIsOpened(design::AccessKey<BusinessMediator>,
+                     bool isOpened)
     {
         isOpened_ = isOpened;
     }
@@ -137,9 +143,9 @@ private:
 BusinessMediator::BusinessMediator(EstateOwner& estateOwner, GroceryStore& groceryStore, Restaurant& restaurant)
     : estateOwner_(estateOwner), groceryStore_(groceryStore), restaurant_(restaurant)
 {
-    estateOwner_.SetBusinessMediator(this);
-    groceryStore_.SetBusinessMediator(this);
-    restaurant_.SetBusinessMediator(this);
+    estateOwner_.SetBusinessMediator(design::AccessKey<BusinessMediator>(), this);
+    groceryStore_.SetBusinessMediator(design::AccessKey<BusinessMediator>(), this);
+    restaurant_.SetBusinessMediator(design::AccessKey<BusinessMediator>(), this);
 }
 
 void BusinessMediator::EstateRentPriceChanged(std::int32_t oldPrice, std::int32_t newPrice)
@@ -152,11 +158,11 @@ void BusinessMediator::GroceryStockChanged(std::int32_t currentStock)
 {
     if (currentStock > 0)
     {
-        restaurant_.SetIsOpened(true);
+        restaurant_.SetIsOpened(design::AccessKey<BusinessMediator>(), true);
     }
     else
     {
-        restaurant_.SetIsOpened(false);
+        restaurant_.SetIsOpened(design::AccessKey<BusinessMediator>(), false);
     }
 }
 
@@ -223,7 +229,8 @@ int main()
 
     BusinessMediator mediator(estateOwner, groceryStore, restaurant);
 
-    SupplyGrocery(groceryStore, 1);
+    SupplyGrocery(groceryStore, 2);
+    groceryStore.Sell();
     BuyFood(restaurant);
     BuyFood(restaurant);
     std::cout << std::endl;

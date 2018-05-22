@@ -59,10 +59,10 @@ private:
 };
 
 /*
-    C++¿¡¼­ Template Method ÆÐÅÏÀ» ±¸ÇöÇÏ´Â ¶Ç ´Ù¸¥ ¹æ¹ýÀº CRTP ¸¦ È°¿ëÇÏ´Â °ÍÀÔ´Ï´Ù.
-    ÀÌ °æ¿ì, °¡»óÇÔ¼ö È£Ãâ·Î ÀÎÇÑ overhead°¡ ¾ø´Ù´Â ÀåÁ¡ÀÌ ÀÖ½À´Ï´Ù. ±×·¯³ª,
-    Derived Å¬·¡½º¿¡¼­ Á¤ÀÇÇØ¾ß¸¸ ÇÏ´Â ÇÔ¼öµéÀÇ Á¤º¸°¡ ¸íÈ®ÇÏ°Ô µå·¯³ªÁö ¾Ê°í,
-    IDE¿¡¼­ ¿¡·¯¸¦ Ç¥½ÃÇØÁÖÁö ¾Ê¾Æ¼­, ÆíÀÇ¼ºÀÌ ¶³¾îÁö°í ½Ç¼öÇÒ °¡´É¼ºÀÌ Å®´Ï´Ù.
+    C++ì—ì„œ Template Method íŒ¨í„´ì„ êµ¬í˜„í•˜ëŠ” ë˜ ë‹¤ë¥¸ ë°©ë²•ì€ CRTP ë¥¼ í™œìš©í•˜ëŠ” ê²ƒìž…ë‹ˆë‹¤.
+    ì´ ê²½ìš°, ê°€ìƒí•¨ìˆ˜ í˜¸ì¶œë¡œ ì¸í•œ overheadê°€ ì—†ë‹¤ëŠ” ìž¥ì ì´ ìžˆìŠµë‹ˆë‹¤. ê·¸ëŸ¬ë‚˜,
+    Derived í´ëž˜ìŠ¤ì—ì„œ ì •ì˜í•´ì•¼ë§Œ í•˜ëŠ” í•¨ìˆ˜ë“¤ì˜ ì •ë³´ê°€ ëª…í™•í•˜ê²Œ ë“œëŸ¬ë‚˜ì§€ ì•Šê³ ,
+    IDEì—ì„œ ì—ëŸ¬ë¥¼ í‘œì‹œí•´ì£¼ì§€ ì•Šì•„ì„œ, íŽ¸ì˜ì„±ì´ ë–¨ì–´ì§€ê³  ì‹¤ìˆ˜í•  ê°€ëŠ¥ì„±ì´ í½ë‹ˆë‹¤.
 */
 int main()
 {

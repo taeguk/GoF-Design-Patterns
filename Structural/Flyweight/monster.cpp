@@ -2,7 +2,7 @@
 #include <map>
 #include <vector>
 
-/* ºÎ°¡Àû »óÅÂ (Extrinsic State) */
+/* ë¶€ê°€ì  ìƒíƒœ (Extrinsic State) */
 struct MonsterContext
 {
     int hp;
@@ -157,14 +157,14 @@ private:
 };
 
 /*
-    º»ÁúÀû »óÅÂ (Intrinsic State)´Â °øÀ¯µÇ°í, ºÎ°¡Àû »óÅÂ (Extrinsic State)´Â
-    °øÀ¯µÇÁö ¾Ê½À´Ï´Ù.
-    º»ÁúÀû »óÅÂ´Â º¯°æµÇÁö ¾ÊÁö¸¸, ºÎ°¡Àû »óÅÂ´Â º¯°æµÉ ¼ö ÀÖ½À´Ï´Ù.
+    ë³¸ì§ˆì  ìƒíƒœ (Intrinsic State)ëŠ” ê³µìœ ë˜ê³ , ë¶€ê°€ì  ìƒíƒœ (Extrinsic State)ëŠ”
+    ê³µìœ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+    ë³¸ì§ˆì  ìƒíƒœëŠ” ë³€ê²½ë˜ì§€ ì•Šì§€ë§Œ, ë¶€ê°€ì  ìƒíƒœëŠ” ë³€ê²½ë  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 */
 struct MonsterInfo
 {
-    Monster const& monster; //< º»ÁúÀû »óÅÂ (Intrinsic State)
-    MonsterContext context; //< ºÎ°¡Àû »óÅÂ (Extrinsic State)
+    Monster const& monster; //< ë³¸ì§ˆì  ìƒíƒœ (Intrinsic State)
+    MonsterContext context; //< ë¶€ê°€ì  ìƒíƒœ (Extrinsic State)
 };
 
 void PrintMonsterInfo(MonsterInfo const& monsterInfo)

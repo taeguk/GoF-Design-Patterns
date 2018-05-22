@@ -98,13 +98,13 @@ private:
 };
 
 /*
-    "»ó¼Ó±â¹ÝÀÇ Proxy Pattern"°ú Decorator PatternÀº ±¸Çö ¹æ¹ýÀÌ À¯»çÇÑµ¥,
-    Decorator PatternÀº ÇÏ³ª ÀÌ»óÀÇ ·ÎÁ÷À» Ãß°¡ÇÏ±â À§ÇÑ ¸ñÀûÀ» °¡Áö°í ÀÖ°í,
-    Proxy PatternÀº ½ÇÁ¦ °´Ã¼¿¡ ´ëÇÑ Á¢±ÙÀ» Á¦¾îÇÏ±â À§ÇÑ ¸ñÀûÀ» °¡Áø´Ù´Â Â÷ÀÌ°¡ ÀÖ½À´Ï´Ù.
+    "ìƒì†ê¸°ë°˜ì˜ Proxy Pattern"ê³¼ Decorator Patternì€ êµ¬í˜„ ë°©ë²•ì´ ìœ ì‚¬í•œë°,
+    Decorator Patternì€ í•˜ë‚˜ ì´ìƒì˜ ë¡œì§ì„ ì¶”ê°€í•˜ê¸° ìœ„í•œ ëª©ì ì„ ê°€ì§€ê³  ìžˆê³ ,
+    Proxy Patternì€ ì‹¤ì œ ê°ì²´ì— ëŒ€í•œ ì ‘ê·¼ì„ ì œì–´í•˜ê¸° ìœ„í•œ ëª©ì ì„ ê°€ì§„ë‹¤ëŠ” ì°¨ì´ê°€ ìžˆìŠµë‹ˆë‹¤.
 
-    µû¶ó¼­, Decorator Pattern¿¡¼­´Â ±âÁ¸ÀÇ ·ÎÁ÷ÀÌ ¹Ýµå½Ã ¼öÇàµÇ´Â °É º¸ÀåÇÏ±â À§ÇØ¼­
-    NVI(Non Virtual Interface) ÆÐÅÏÀ» È°¿ëÇÒ ¼ö ÀÖÁö¸¸,
-    Proxy Pattern¿¡¼­´Â ±âÁ¸ÀÇ ·ÎÁ÷¿¡ ´ëÇÑ Á¢±ÙÀ» Á¦¾îÇØ¾ßÇÏ±â ¶§¹®¿¡, NVIÆÐÅÏÀ» »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.
+    ë”°ë¼ì„œ, Decorator Patternì—ì„œëŠ” ê¸°ì¡´ì˜ ë¡œì§ì´ ë°˜ë“œì‹œ ìˆ˜í–‰ë˜ëŠ” ê±¸ ë³´ìž¥í•˜ê¸° ìœ„í•´ì„œ
+    NVI(Non Virtual Interface) íŒ¨í„´ì„ í™œìš©í•  ìˆ˜ ìžˆì§€ë§Œ,
+    Proxy Patternì—ì„œëŠ” ê¸°ì¡´ì˜ ë¡œì§ì— ëŒ€í•œ ì ‘ê·¼ì„ ì œì–´í•´ì•¼í•˜ê¸° ë•Œë¬¸ì—, NVIíŒ¨í„´ì„ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 */
 
 int main()

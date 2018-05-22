@@ -2,14 +2,14 @@
 #include <stack>
 #include <vector>
 
-// Mementor Å¬·¡½º
+// Mementor í´ëž˜ìŠ¤
 class Snapshot
 {
 private:
     friend class VirtualMachine;
 
-    // ¿¹½Ã¸¦ À§ÇØ °£´ÜÇÏ°Ô ÇßÁö¸¸, ½ÇÁ¦·Î´Â ¿ÜºÎ¿¡ ³ëÃâµÇ¸é ¾ÈµÇ´Â ¸¹Àº »óÅÂ Á¤º¸µéÀÌ
-    // µé¾îÀÖÀ» °ÍÀÔ´Ï´Ù.
+    // ì˜ˆì‹œë¥¼ ìœ„í•´ ê°„ë‹¨í•˜ê²Œ í–ˆì§€ë§Œ, ì‹¤ì œë¡œëŠ” ì™¸ë¶€ì— ë…¸ì¶œë˜ë©´ ì•ˆë˜ëŠ” ë§Žì€ ìƒíƒœ ì •ë³´ë“¤ì´
+    // ë“¤ì–´ìžˆì„ ê²ƒìž…ë‹ˆë‹¤.
     struct State
     {
         std::uint16_t cpuCount{ 1 };
@@ -24,7 +24,7 @@ private:
     State state_;
 };
 
-// Originator Å¬·¡½º
+// Originator í´ëž˜ìŠ¤
 class VirtualMachine
 {
 public:
@@ -67,15 +67,15 @@ void PrintVmInfo(VirtualMachine const& vm)
 }
 
 /*
-    Memento PatternÀº Ä¸½¶È­¸¦ À§¹èÇÏÁö ¾ÊÀº Ã¤, ¾î¶² °´Ã¼ÀÇ ³»ºÎ »óÅÂ¸¦ ÀúÀåÇØµÒÀ¸·Î¼­,
-    ³ªÁß¿¡ ±× °´Ã¼¸¦ ´Ù½Ã ¿ø·¡ »óÅÂ·Î µÇµ¹¾Æ ¿Ã ¼ö ÀÖµµ·Ï ÇØÁÝ´Ï´Ù.
-    ÇÙ½ÉÆ÷ÀÎÆ®´Â, Originator °´Ã¼ÀÇ ³»ºÎ »óÅÂ¸¦ ´ã°í ÀÖ´Â Memento °´Ã¼¸¦ ¿ÜºÎ¿¡¼­
-    °ü¸®ÇÑ´Ù´Â Á¡ÀÔ´Ï´Ù.
-    ¸¸¾à, Originator °¡ ¸ðµç »óÅÂ Á¤º¸µéÀ» °ü¸®ÇÑ´Ù¸é, Originator ´Â ³Ê¹« º¹ÀâÇØÁö°Ô µË´Ï´Ù.
-    Memento PatternÀº »óÅÂ Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼µéÀ» ¿ÜºÎ¿¡¼­ °ü¸®ÇÏ°Ô ÇÔÀ¸·Î¼­,
-    Originator¸¦ ´Ü¼øÇÏ°Ô ¸¸µì´Ï´Ù.
-    ±×·¸Áö¸¸, ¼¼ºÎÀûÀÎ »óÅÂ Á¤º¸¿¡ ´ëÇØ¼­´Â ¿ÜºÎ¿¡¼­ Á¢±ÙÇÒ ¼ö ¾ø°í, ¿ÀÁ÷ Originator¿¡¼­¸¸
-    Á¢±ÙÇÒ ¼ö ÀÖµµ·Ï ÇÕ´Ï´Ù. (C++¿¡¼­´Â ÀÌ¸¦ À§ÇØ, friend keyword ¸¦ È°¿ëÇÕ´Ï´Ù.)
+    Memento Patternì€ ìº¡ìŠí™”ë¥¼ ìœ„ë°°í•˜ì§€ ì•Šì€ ì±„, ì–´ë–¤ ê°ì²´ì˜ ë‚´ë¶€ ìƒíƒœë¥¼ ì €ìž¥í•´ë‘ ìœ¼ë¡œì„œ,
+    ë‚˜ì¤‘ì— ê·¸ ê°ì²´ë¥¼ ë‹¤ì‹œ ì›ëž˜ ìƒíƒœë¡œ ë˜ëŒì•„ ì˜¬ ìˆ˜ ìžˆë„ë¡ í•´ì¤ë‹ˆë‹¤.
+    í•µì‹¬í¬ì¸íŠ¸ëŠ”, Originator ê°ì²´ì˜ ë‚´ë¶€ ìƒíƒœë¥¼ ë‹´ê³  ìžˆëŠ” Memento ê°ì²´ë¥¼ ì™¸ë¶€ì—ì„œ
+    ê´€ë¦¬í•œë‹¤ëŠ” ì ìž…ë‹ˆë‹¤.
+    ë§Œì•½, Originator ê°€ ëª¨ë“  ìƒíƒœ ì •ë³´ë“¤ì„ ê´€ë¦¬í•œë‹¤ë©´, Originator ëŠ” ë„ˆë¬´ ë³µìž¡í•´ì§€ê²Œ ë©ë‹ˆë‹¤.
+    Memento Patternì€ ìƒíƒœ ì •ë³´ë¥¼ ë‹´ê³  ìžˆëŠ” ê°ì²´ë“¤ì„ ì™¸ë¶€ì—ì„œ ê´€ë¦¬í•˜ê²Œ í•¨ìœ¼ë¡œì„œ,
+    Originatorë¥¼ ë‹¨ìˆœí•˜ê²Œ ë§Œë“­ë‹ˆë‹¤.
+    ê·¸ë ‡ì§€ë§Œ, ì„¸ë¶€ì ì¸ ìƒíƒœ ì •ë³´ì— ëŒ€í•´ì„œëŠ” ì™¸ë¶€ì—ì„œ ì ‘ê·¼í•  ìˆ˜ ì—†ê³ , ì˜¤ì§ Originatorì—ì„œë§Œ
+    ì ‘ê·¼í•  ìˆ˜ ìžˆë„ë¡ í•©ë‹ˆë‹¤. (C++ì—ì„œëŠ” ì´ë¥¼ ìœ„í•´, friend keyword ë¥¼ í™œìš©í•©ë‹ˆë‹¤.)
 */
 
 int main()

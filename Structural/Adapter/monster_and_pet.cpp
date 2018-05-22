@@ -3,7 +3,7 @@
 #include <string>
 #include <type_traits>
 
-/* ÅÂÃÊ¿¡ MonsterµéÀÌ Á¸ÀçÇß´Ù.. */
+/* íƒœì´ˆì— Monsterë“¤ì´ ì¡´ì¬í–ˆë‹¤.. */
 class Monster
 {
 public:
@@ -37,7 +37,7 @@ public:
     int DefenseAbility() const override { return 500; }
 };
 
-/* ±×¸®°í ÅÂÃÊ¿¡ PetµéÀÌ Á¸ÀçÇß´Ù.. */
+/* ê·¸ë¦¬ê³  íƒœì´ˆì— Petë“¤ì´ ì¡´ì¬í–ˆë‹¤.. */
 class Pet
 {
 public:
@@ -63,12 +63,12 @@ public:
     int BattleBonus() const override { return 10; }
 };
 
-/*** ±×·¯³ª °ÔÀÓÀÌ ¾÷µ¥ÀÌÆ®µÇ¸é¼­ Monsterµéµµ PetÀÌ µÉ ¼ö ÀÖ°Ô µÇ¾ú´Ù¸é?! 
-        ==> ÀÌ °æ¿ì Adapter ÆĞÅÏÀ» ÀÌ¿ëÇÏ¸é ±âÁ¸ÀÇ Monster Å¬·¡½º °èÅëÀ» ¼öÁ¤ÇÏÁö ¾Ê°í, ÀÌ ¹®Á¦¸¦ ÇØ°á ÇÒ ¼ö ÀÖ´Ù!
+/*** ê·¸ëŸ¬ë‚˜ ê²Œì„ì´ ì—…ë°ì´íŠ¸ë˜ë©´ì„œ Monsterë“¤ë„ Petì´ ë  ìˆ˜ ìˆê²Œ ë˜ì—ˆë‹¤ë©´?! 
+        ==> ì´ ê²½ìš° Adapter íŒ¨í„´ì„ ì´ìš©í•˜ë©´ ê¸°ì¡´ì˜ Monster í´ë˜ìŠ¤ ê³„í†µì„ ìˆ˜ì •í•˜ì§€ ì•Šê³ , ì´ ë¬¸ì œë¥¼ í•´ê²° í•  ìˆ˜ ìˆë‹¤!
 ***/
 
-/* Monster¸¦ Á¤ÀûÀ¸·Î(compile-time) PetÀÇ ÀÏºÎ·Î¼­ ¸¸µé°í ½ÍÀº °æ¿ì, 
-    templateÀ» È°¿ëÇÏ¸é, overhead¸¦ ÃÖ¼ÒÈ­ÇÒ ¼ö ÀÖ´Ù. ´Ü, À¯¿¬¼ºÀº ¶³¾îÁø´Ù.
+/* Monsterë¥¼ ì •ì ìœ¼ë¡œ(compile-time) Petì˜ ì¼ë¶€ë¡œì„œ ë§Œë“¤ê³  ì‹¶ì€ ê²½ìš°, 
+    templateì„ í™œìš©í•˜ë©´, overheadë¥¼ ìµœì†Œí™”í•  ìˆ˜ ìˆë‹¤. ë‹¨, ìœ ì—°ì„±ì€ ë–¨ì–´ì§„ë‹¤.
 */
 template <typename MonsterType, 
             typename = std::enable_if_t<std::is_base_of<Monster, MonsterType>::value>>
@@ -83,10 +83,10 @@ private:
     MonsterType monster_;
 };
 
-/* Monster¸¦ µ¿ÀûÀ¸·Î(run-time) PetÀÇ ÀÏºÎ·Î¼­ ¸¸µé°í ½ÍÀº °æ¿ì,
-    Monster Å¬·¡½º °èÅëÀÇ base class·Î¼­ ¼­ºêÅ¸ÀÌÇÎÀ» ÇÏ¸é Å« À¯¿¬¼ºÀ» ¾òÀ» ¼ö ÀÖ´Ù.
-    pet¿¡ ÇØ´çÇÏ´Â monster¸¦ ¹Ù²Ù°Å³ª petÀ» ´Ù½Ã monster·Î º¹±Í½ÃÅ°´Â µîÀÇ µ¿ÀûÀÎ ÀÛ¾÷ÀÌ °¡´ÉÇØÁø´Ù.
-    ´Ü, staticÇÑ ¹öÀü(templateÀ» ÀÌ¿ëÇÑ ¹öÀü)¿¡ ºñÇØ overhead°¡ ´õ Á¸ÀçÇÑ´Ù.
+/* Monsterë¥¼ ë™ì ìœ¼ë¡œ(run-time) Petì˜ ì¼ë¶€ë¡œì„œ ë§Œë“¤ê³  ì‹¶ì€ ê²½ìš°,
+    Monster í´ë˜ìŠ¤ ê³„í†µì˜ base classë¡œì„œ ì„œë¸Œíƒ€ì´í•‘ì„ í•˜ë©´ í° ìœ ì—°ì„±ì„ ì–»ì„ ìˆ˜ ìˆë‹¤.
+    petì— í•´ë‹¹í•˜ëŠ” monsterë¥¼ ë°”ê¾¸ê±°ë‚˜ petì„ ë‹¤ì‹œ monsterë¡œ ë³µê·€ì‹œí‚¤ëŠ” ë“±ì˜ ë™ì ì¸ ì‘ì—…ì´ ê°€ëŠ¥í•´ì§„ë‹¤.
+    ë‹¨, staticí•œ ë²„ì „(templateì„ ì´ìš©í•œ ë²„ì „)ì— ë¹„í•´ overheadê°€ ë” ì¡´ì¬í•œë‹¤.
 */
 class PetAdapterDynamic : public Pet
 {

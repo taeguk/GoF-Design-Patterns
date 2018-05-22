@@ -96,13 +96,13 @@ void ChangeVehicle(MunitionStore& store, std::unique_ptr<Vehicle>&& vehicle)
 }
 
 /*
-    Prototype PatternÀº »õ·Î¿î Å¬·¡½º °èÃþÀ» ¸¸µé Áö ¾Ê´Â ÀåÁ¡ÀÌ ÀÖ½À´Ï´Ù.
-    ±×·¯³ª, ±âÁ¸¿¡ Á¸ÀçÇÏ´Â Á¦Ç° Å¬·¡½º °èÃþ¿¡ Clone ¿¬»êÀ» ±¸ÇöÇØ¾ßÇÕ´Ï´Ù. (¸¸¾à ±×°ÍÀÌ ºÒ°¡´ÉÇÒ °æ¿ì, ¿øÇüÆÐÅÏÀº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.)
+    Prototype Patternì€ ìƒˆë¡œìš´ í´ëž˜ìŠ¤ ê³„ì¸µì„ ë§Œë“¤ ì§€ ì•ŠëŠ” ìž¥ì ì´ ìžˆìŠµë‹ˆë‹¤.
+    ê·¸ëŸ¬ë‚˜, ê¸°ì¡´ì— ì¡´ìž¬í•˜ëŠ” ì œí’ˆ í´ëž˜ìŠ¤ ê³„ì¸µì— Clone ì—°ì‚°ì„ êµ¬í˜„í•´ì•¼í•©ë‹ˆë‹¤. (ë§Œì•½ ê·¸ê²ƒì´ ë¶ˆê°€ëŠ¥í•  ê²½ìš°, ì›í˜•íŒ¨í„´ì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.)
     
-    ¶ÇÇÑ, ·±Å¸ÀÓ¿¡ »õ·Î¿î Á¦Ç°À» Ãß°¡ÇÒ ¼ö ÀÖ°í, °´Ã¼ÀÇ °ªµéÀ» ´Ù¾çÈ­ÇÔÀ¸·Î½á »õ·Î¿î Á¦Ç°À» ¸¸µé ¼ö ÀÖ½À´Ï´Ù.
+    ë˜í•œ, ëŸ°íƒ€ìž„ì— ìƒˆë¡œìš´ ì œí’ˆì„ ì¶”ê°€í•  ìˆ˜ ìžˆê³ , ê°ì²´ì˜ ê°’ë“¤ì„ ë‹¤ì–‘í™”í•¨ìœ¼ë¡œì¨ ìƒˆë¡œìš´ ì œí’ˆì„ ë§Œë“¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
-    Factory Method Pattern(È¤Àº Abstract Factory Pattern) °°Àº °æ¿ì´Â ¼­ºêÅ¬·¡½Ì ±â¹ÝÀÓÀ¸·Î Å¬·¡½º °èÃþÀÌ ºñ´ëÇØÁö´Â ¹®Á¦°¡ ÀÖ½À´Ï´Ù.
-    ¹Ý¸é¿¡, Prototype PatternÀº Á¦Ç° Å¬·¡½º °èÃþÀ» ¼öÁ¤ÇÏ´Â ´ë½Å, »õ·Î¿î Å¬·¡½º °èÃþÀÌ ºñ´ëÇØÁö´Â ¹®Á¦°¡ ¾ø½À´Ï´Ù.
+    Factory Method Pattern(í˜¹ì€ Abstract Factory Pattern) ê°™ì€ ê²½ìš°ëŠ” ì„œë¸Œí´ëž˜ì‹± ê¸°ë°˜ìž„ìœ¼ë¡œ í´ëž˜ìŠ¤ ê³„ì¸µì´ ë¹„ëŒ€í•´ì§€ëŠ” ë¬¸ì œê°€ ìžˆìŠµë‹ˆë‹¤.
+    ë°˜ë©´ì—, Prototype Patternì€ ì œí’ˆ í´ëž˜ìŠ¤ ê³„ì¸µì„ ìˆ˜ì •í•˜ëŠ” ëŒ€ì‹ , ìƒˆë¡œìš´ í´ëž˜ìŠ¤ ê³„ì¸µì´ ë¹„ëŒ€í•´ì§€ëŠ” ë¬¸ì œê°€ ì—†ìŠµë‹ˆë‹¤.
 */
 
 int main()

@@ -62,14 +62,14 @@ public:
         : message_(std::move(message))
     {}
 
-    /* ±âÁ¸ÀÇ ·ÎÁ÷ÀÌ ¹Ýµå½Ã ¼öÇàµÇ´Â °É º¸ÀåÇÏ±â À§ÇØ¼­ NVI ÆÐÅÏ »ç¿ë */
+    /* ê¸°ì¡´ì˜ ë¡œì§ì´ ë°˜ë“œì‹œ ìˆ˜í–‰ë˜ëŠ” ê±¸ ë³´ìž¥í•˜ê¸° ìœ„í•´ì„œ NVI íŒ¨í„´ ì‚¬ìš© */
     void PrintLayer() const final
     {
         message_->PrintLayer();
         PrintLayerImpl_();
     }
 
-    /* ±âÁ¸ÀÇ ·ÎÁ÷ÀÌ ¹Ýµå½Ã ¼öÇàµÇ´Â °É º¸ÀåÇÏ±â À§ÇØ¼­ NVI ÆÐÅÏ »ç¿ë */
+    /* ê¸°ì¡´ì˜ ë¡œì§ì´ ë°˜ë“œì‹œ ìˆ˜í–‰ë˜ëŠ” ê±¸ ë³´ìž¥í•˜ê¸° ìœ„í•´ì„œ NVI íŒ¨í„´ ì‚¬ìš© */
     std::string Serialize() const final
     {
         std::string buffer = message_->Serialize();

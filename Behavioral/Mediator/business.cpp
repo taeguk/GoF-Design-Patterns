@@ -213,12 +213,12 @@ void ChangeEstateRentPrice(EstateOwner& estateOwner, std::int32_t newPrice)
 }
 
 /*
-    Mediator PatternÀº ÇÑ ÁýÇÕ¿¡ ¼ÓÇØÀÖ´Â °´Ã¼µéÀÇ »óÈ£ÀÛ¿ëÀ» Ä¸½¶È­ÇÏ´Â ÆÐÅÏÀÔ´Ï´Ù.
-    °´Ã¼µé°£ÀÇ »óÈ£ÀÛ¿ëÀÌ ÇÏ³ªÀÇ °´Ã¼·Î ¸ð¾ÆÁö±â ¶§¹®¿¡, °´Ã¼µéÀÌ ¼­·Î¸¦ Á÷Á¢ ÂüÁ¶ÇÏÁö ¾Ê°ÔµÇ¾î
-    °´Ã¼µéÀÌ loosely coupling µÇ´Â È¿°ú°¡ ÀÖ½À´Ï´Ù.
-    °´Ã¼µé°£ÀÇ »óÈ£ÀÛ¿ë ·ÎÁ÷ÀÌ °´Ã¼µé°ú ºÐ¸®µÇ¾î Ãß»óÈ­µÇ¹Ç·Î, »óÈ£ÀÛ¿ë ·ÎÁ÷¸¸À» ½±°Ô ¼öÁ¤ÇÏ°Å³ª
-    ·±Å¸ÀÓ¿¡ º¯°æÇÒ ¼ö ÀÖ°Ô µË´Ï´Ù. ¶ÇÇÑ °¢ °´Ã¼µéÀÌ º°µµ·Î Àç»ç¿ëÀÌ °¡´ÉÇØÁö°Ô µË´Ï´Ù.
-    ´Ü, Mediator Å¬·¡½º ÀÚÃ¼´Â º¹Àâµµ°¡ Áõ°¡ÇØ À¯Áöº¸¼ö°¡ ¾î·Á¿öÁú ¼ö ÀÖ½À´Ï´Ù.
+    Mediator Patternì€ í•œ ì§‘í•©ì— ì†í•´ìžˆëŠ” ê°ì²´ë“¤ì˜ ìƒí˜¸ìž‘ìš©ì„ ìº¡ìŠí™”í•˜ëŠ” íŒ¨í„´ìž…ë‹ˆë‹¤.
+    ê°ì²´ë“¤ê°„ì˜ ìƒí˜¸ìž‘ìš©ì´ í•˜ë‚˜ì˜ ê°ì²´ë¡œ ëª¨ì•„ì§€ê¸° ë•Œë¬¸ì—, ê°ì²´ë“¤ì´ ì„œë¡œë¥¼ ì§ì ‘ ì°¸ì¡°í•˜ì§€ ì•Šê²Œë˜ì–´
+    ê°ì²´ë“¤ì´ loosely coupling ë˜ëŠ” íš¨ê³¼ê°€ ìžˆìŠµë‹ˆë‹¤.
+    ê°ì²´ë“¤ê°„ì˜ ìƒí˜¸ìž‘ìš© ë¡œì§ì´ ê°ì²´ë“¤ê³¼ ë¶„ë¦¬ë˜ì–´ ì¶”ìƒí™”ë˜ë¯€ë¡œ, ìƒí˜¸ìž‘ìš© ë¡œì§ë§Œì„ ì‰½ê²Œ ìˆ˜ì •í•˜ê±°ë‚˜
+    ëŸ°íƒ€ìž„ì— ë³€ê²½í•  ìˆ˜ ìžˆê²Œ ë©ë‹ˆë‹¤. ë˜í•œ ê° ê°ì²´ë“¤ì´ ë³„ë„ë¡œ ìž¬ì‚¬ìš©ì´ ê°€ëŠ¥í•´ì§€ê²Œ ë©ë‹ˆë‹¤.
+    ë‹¨, Mediator í´ëž˜ìŠ¤ ìžì²´ëŠ” ë³µìž¡ë„ê°€ ì¦ê°€í•´ ìœ ì§€ë³´ìˆ˜ê°€ ì–´ë ¤ì›Œì§ˆ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 */
 
 int main()

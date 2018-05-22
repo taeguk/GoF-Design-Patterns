@@ -57,17 +57,17 @@ private:
 };
 
 /*
-    Template Method PatternÀº °´Ã¼ÀÇ ¿¬»ê¿¡´Â ¾Ë°í¸®ÁòÀÇ »À´ë¸¸À» Á¤ÀÇÇÏ°í,
-    °¢ ´Ü°è¿¡¼­ ¼öÇàÇÒ ±¸Ã¼Àû Ã³¸®´Â ¼­ºêÅ¬·¡½º ÂÊÀ¸·Î ¹Ì·ç´Â ÆÐÅÏÀÔ´Ï´Ù.
-    Áï, "º¯ÇÏÁö ¾Ê´Â °Í" À¸·Î ºÎÅÍ "º¯ÇÏ´Â °Í" À» °¡»óÇÔ¼ö ±â¹ÝÀ¸·Î ºÐ¸®ÇÏ´Â °ÍÀÔ´Ï´Ù.
+    Template Method Patternì€ ê°ì²´ì˜ ì—°ì‚°ì—ëŠ” ì•Œê³ ë¦¬ì¦˜ì˜ ë¼ˆëŒ€ë§Œì„ ì •ì˜í•˜ê³ ,
+    ê° ë‹¨ê³„ì—ì„œ ìˆ˜í–‰í•  êµ¬ì²´ì  ì²˜ë¦¬ëŠ” ì„œë¸Œí´ëž˜ìŠ¤ ìª½ìœ¼ë¡œ ë¯¸ë£¨ëŠ” íŒ¨í„´ìž…ë‹ˆë‹¤.
+    ì¦‰, "ë³€í•˜ì§€ ì•ŠëŠ” ê²ƒ" ìœ¼ë¡œ ë¶€í„° "ë³€í•˜ëŠ” ê²ƒ" ì„ ê°€ìƒí•¨ìˆ˜ ê¸°ë°˜ìœ¼ë¡œ ë¶„ë¦¬í•˜ëŠ” ê²ƒìž…ë‹ˆë‹¤.
 
-    ÀÌ ÆÐÅÏ°ú´Â ´Ù¸£°Ô, Strategy PatternÀº "º¯ÇÏÁö ¾Ê´Â °Í" À¸·Î ºÎÅÍ "º¯ÇÏ´Â °Í" À»
-    ´Ù¸¥ Å¬·¡½º·Î ºÐ¸®ÇÕ´Ï´Ù. Strategy PatternÀº ·±Å¸ÀÓ¿¡ ±¸Ã¼ÀûÀÎ Ã³¸® ¹æ½ÄÀ»
-    º¯°æÇÒ ¼ö ÀÖ´Â ¹Ý¸é¿¡ Template Method PatternÀº ·±Å¸ÀÓ¿¡ ±¸Ã¼Àû Ã³¸® ¹æ½ÄÀ»
-    º¯°æÇÒ ¼ö ¾ø½À´Ï´Ù.
+    ì´ íŒ¨í„´ê³¼ëŠ” ë‹¤ë¥´ê²Œ, Strategy Patternì€ "ë³€í•˜ì§€ ì•ŠëŠ” ê²ƒ" ìœ¼ë¡œ ë¶€í„° "ë³€í•˜ëŠ” ê²ƒ" ì„
+    ë‹¤ë¥¸ í´ëž˜ìŠ¤ë¡œ ë¶„ë¦¬í•©ë‹ˆë‹¤. Strategy Patternì€ ëŸ°íƒ€ìž„ì— êµ¬ì²´ì ì¸ ì²˜ë¦¬ ë°©ì‹ì„
+    ë³€ê²½í•  ìˆ˜ ìžˆëŠ” ë°˜ë©´ì— Template Method Patternì€ ëŸ°íƒ€ìž„ì— êµ¬ì²´ì  ì²˜ë¦¬ ë°©ì‹ì„
+    ë³€ê²½í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-    Template Method PatternÀ» C++¿¡¼­ ±¸ÇöÇÏ´Â ¹æ¹ý¿¡´Â NVI idiom °ú CRTP idiom ÀÌ
-    ÀÖ½À´Ï´Ù. ÀÌ ¼Ò½ºÄÚµå¿¡¼­´Â NVI idiom À» ÀÌ¿ëÇÏ¿´½À´Ï´Ù.
+    Template Method Patternì„ C++ì—ì„œ êµ¬í˜„í•˜ëŠ” ë°©ë²•ì—ëŠ” NVI idiom ê³¼ CRTP idiom ì´
+    ìžˆìŠµë‹ˆë‹¤. ì´ ì†ŒìŠ¤ì½”ë“œì—ì„œëŠ” NVI idiom ì„ ì´ìš©í•˜ì˜€ìŠµë‹ˆë‹¤.
 */
 int main()
 {

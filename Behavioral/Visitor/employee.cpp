@@ -114,23 +114,23 @@ void Calculate(const std::vector<Employee*>& employeeList,
 }
 
 /*
-    Visitor PatternÀº ¾Ë°í¸®ÁòÀ» °´Ã¼ ±¸Á¶¿¡¼­ ºÐ¸®½ÃÅ°´Â ÆÐÅÏÀ¸·Î¼­, ¿¬»êÀ» Àû¿ëÇÒ
-    ¿ø¼ÒÀÇ Å¬·¡½º¸¦ º¯°æÇÏÁö ¾Ê°íµµ »õ·Î¿î ¿¬»êÀ» Á¤ÀÇÇÒ ¼ö ÀÖµµ·Ï ÇØÁÝ´Ï´Ù.
-    °´Ã¼ ±¸Á¶ (Å¬·¡½º °èÅë) ¿¡ ´ëÇÑ Æ¯Á¤ ¿¬»êµéÀÌ ¸ðµÎ ÇÏ³ªÀÇ Visitor Å¬·¡½º¿¡
-    ¸ð¾ÆÁö´Â Æ¯Â¡ÀÌ ÀÖ½À´Ï´Ù. (°æ¿ì¿¡ µû¶ó ÀåÁ¡ÀÏ ¼öµµ ´ÜÁ¡ÀÏ ¼öµµ ÀÖ½À´Ï´Ù.)
+    Visitor Patternì€ ì•Œê³ ë¦¬ì¦˜ì„ ê°ì²´ êµ¬ì¡°ì—ì„œ ë¶„ë¦¬ì‹œí‚¤ëŠ” íŒ¨í„´ìœ¼ë¡œì„œ, ì—°ì‚°ì„ ì ìš©í• 
+    ì›ì†Œì˜ í´ëž˜ìŠ¤ë¥¼ ë³€ê²½í•˜ì§€ ì•Šê³ ë„ ìƒˆë¡œìš´ ì—°ì‚°ì„ ì •ì˜í•  ìˆ˜ ìžˆë„ë¡ í•´ì¤ë‹ˆë‹¤.
+    ê°ì²´ êµ¬ì¡° (í´ëž˜ìŠ¤ ê³„í†µ) ì— ëŒ€í•œ íŠ¹ì • ì—°ì‚°ë“¤ì´ ëª¨ë‘ í•˜ë‚˜ì˜ Visitor í´ëž˜ìŠ¤ì—
+    ëª¨ì•„ì§€ëŠ” íŠ¹ì§•ì´ ìžˆìŠµë‹ˆë‹¤. (ê²½ìš°ì— ë”°ë¼ ìž¥ì ì¼ ìˆ˜ë„ ë‹¨ì ì¼ ìˆ˜ë„ ìžˆìŠµë‹ˆë‹¤.)
 
-    ÀüÅëÀû °´Ã¼ÁöÇâ µðÀÚÀÎ¿¡¼­´Â, Å¬·¡½º °èÅë¿¡ ¿¬»êÀ» Ãß°¡ÇØ¾ßÇÒ °æ¿ì ¸ðµç Å¬·¡½º¿¡
-    °¡»óÇÔ¼ö¸¦ ÇÏ³ª Ãß°¡ÇØ¾ßÇÕ´Ï´Ù. ±×¸®°í, Å¬·¡½º¸¦ Ãß°¡ÇØ¾ßÇÒ °æ¿ì, »õ·Î¿î Å¬·¡½º¸¦
-    ÇÏ³ª ¸¸µé¸é µË´Ï´Ù.
-    Visitor Pattern ¿¡¼­´Â ¹Ý´ëÀÇ Çö»óÀÌ ³ªÅ¸³³´Ï´Ù. Å¬·¡½º °èÅë¿¡ ¿¬»êÀ» Ãß°¡ÇØ¾ßÇÒ
-    °æ¿ì »õ·Î¿î Visitor Å¬·¡½º¸¦ ÇÏ³ª ¸¸µé¸é µÇ°í, Å¬·¡½º¸¦ Ãß°¡ÇÒ °æ¿ì, ¸ðµç
-    Visitor Å¬·¡½ºµé¿¡ ´ëÇØ °¡»óÇÔ¼ö¸¦ ÇÏ³ª Ãß°¡ÇØ¾ßÇÕ´Ï´Ù.
-    Áï, Visitor PatternÀº °´Ã¼ ±¸Á¶¸¦ Á¤ÀÇÇÑ Å¬·¡½º´Â °ÅÀÇ º¯ÇÏÁö ¾ÊÁö¸¸, »õ·Î¿î
-    ¿¬»êÀÌ Ãß°¡µÉ °¡´É¼ºÀÌ Å¬ °æ¿ì À¯¸®ÇÕ´Ï´Ù.
+    ì „í†µì  ê°ì²´ì§€í–¥ ë””ìžì¸ì—ì„œëŠ”, í´ëž˜ìŠ¤ ê³„í†µì— ì—°ì‚°ì„ ì¶”ê°€í•´ì•¼í•  ê²½ìš° ëª¨ë“  í´ëž˜ìŠ¤ì—
+    ê°€ìƒí•¨ìˆ˜ë¥¼ í•˜ë‚˜ ì¶”ê°€í•´ì•¼í•©ë‹ˆë‹¤. ê·¸ë¦¬ê³ , í´ëž˜ìŠ¤ë¥¼ ì¶”ê°€í•´ì•¼í•  ê²½ìš°, ìƒˆë¡œìš´ í´ëž˜ìŠ¤ë¥¼
+    í•˜ë‚˜ ë§Œë“¤ë©´ ë©ë‹ˆë‹¤.
+    Visitor Pattern ì—ì„œëŠ” ë°˜ëŒ€ì˜ í˜„ìƒì´ ë‚˜íƒ€ë‚©ë‹ˆë‹¤. í´ëž˜ìŠ¤ ê³„í†µì— ì—°ì‚°ì„ ì¶”ê°€í•´ì•¼í• 
+    ê²½ìš° ìƒˆë¡œìš´ Visitor í´ëž˜ìŠ¤ë¥¼ í•˜ë‚˜ ë§Œë“¤ë©´ ë˜ê³ , í´ëž˜ìŠ¤ë¥¼ ì¶”ê°€í•  ê²½ìš°, ëª¨ë“ 
+    Visitor í´ëž˜ìŠ¤ë“¤ì— ëŒ€í•´ ê°€ìƒí•¨ìˆ˜ë¥¼ í•˜ë‚˜ ì¶”ê°€í•´ì•¼í•©ë‹ˆë‹¤.
+    ì¦‰, Visitor Patternì€ ê°ì²´ êµ¬ì¡°ë¥¼ ì •ì˜í•œ í´ëž˜ìŠ¤ëŠ” ê±°ì˜ ë³€í•˜ì§€ ì•Šì§€ë§Œ, ìƒˆë¡œìš´
+    ì—°ì‚°ì´ ì¶”ê°€ë  ê°€ëŠ¥ì„±ì´ í´ ê²½ìš° ìœ ë¦¬í•©ë‹ˆë‹¤.
 
-    Visitor PatternÀº Accept() ¿¬»ê¿¡¼­ ÀÌÁß µð½ºÆÐÄ¡ (Double Dispatch) ±â¹ýÀ»
-    »ç¿ëÇÕ´Ï´Ù. Visitor °´Ã¼ÀÇ Å¸ÀÔ°ú Element °´Ã¼ÀÇ Å¸ÀÔ ¸ðµÎ¿¡ µû¶ó ½ÇÁ¦ ¼öÇàµÉ
-    ¿¬»êÀÌ °áÁ¤µË´Ï´Ù.
+    Visitor Patternì€ Accept() ì—°ì‚°ì—ì„œ ì´ì¤‘ ë””ìŠ¤íŒ¨ì¹˜ (Double Dispatch) ê¸°ë²•ì„
+    ì‚¬ìš©í•©ë‹ˆë‹¤. Visitor ê°ì²´ì˜ íƒ€ìž…ê³¼ Element ê°ì²´ì˜ íƒ€ìž… ëª¨ë‘ì— ë”°ë¼ ì‹¤ì œ ìˆ˜í–‰ë 
+    ì—°ì‚°ì´ ê²°ì •ë©ë‹ˆë‹¤.
 */
 int main()
 {

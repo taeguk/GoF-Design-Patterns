@@ -64,8 +64,8 @@ private:
 };
 
 /*
-    Abstract Factory PatternÀº Factory Method PatternÀ» ÀÌ¿ëÇÏ¿© ±¸ÇöµË´Ï´Ù.
-    (ÀÌ ¿¹Á¦ ÄÚµå´Â Abstract Factory PatternÀÎ µ¿½Ã¿¡ Factory Method PatternÀÌ±âµµ ÇÑ ¼ÀÀÔ´Ï´Ù.)
+    Abstract Factory Patternì€ Factory Method Patternì„ ì´ìš©í•˜ì—¬ êµ¬í˜„ë©ë‹ˆë‹¤.
+    (ì´ ì˜ˆì œ ì½”ë“œëŠ” Abstract Factory Patternì¸ ë™ì‹œì— Factory Method Patternì´ê¸°ë„ í•œ ì…ˆì…ë‹ˆë‹¤.)
 */
 
 int main()

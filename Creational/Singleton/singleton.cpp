@@ -32,8 +32,8 @@ void Test()
 }
 
 /*
-    SingletonÀº º¸Åë ¾²Áö ¸»ÀÚ°í (È¤Àº ½ÅÁßÇÏ°Ô »ç¿ëÇÏÀÚ°í) ±ÇÇØÁö°í ÀÖ½À´Ï´Ù.
-    Âü°í : https://softwareengineering.stackexchange.com/questions/40373/so-singletons-are-bad-then-what
+    Singletonì€ ë³´í†µ ì“°ì§€ ë§ìê³  (í˜¹ì€ ì‹ ì¤‘í•˜ê²Œ ì‚¬ìš©í•˜ìê³ ) ê¶Œí•´ì§€ê³  ìˆìŠµë‹ˆë‹¤.
+    ì°¸ê³  : https://softwareengineering.stackexchange.com/questions/40373/so-singletons-are-bad-then-what
 */
 
 int main()

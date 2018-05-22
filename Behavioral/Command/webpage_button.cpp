@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-/* Receiver (½ÇÁ¦ ¿äÃ»À» Ã³¸®ÇÒ Ã¥ÀÓÀ» Áö´Â °´Ã¼) */
+/* Receiver (ì‹¤ì œ ìš”ì²­ì„ ì²˜ë¦¬í•  ì±…ìž„ì„ ì§€ëŠ” ê°ì²´) */
 class WebPageManager
 {
 public:
@@ -36,7 +36,7 @@ private:
     std::string webPage_;
 };
 
-/* ÅÛÇÃ¸´À» È°¿ëÇØ¼­, ÀÓÀÇÀÇ Receiver¿¡°Ô ¸í·ÉÀ» Àü´ÞÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù. */
+/* í…œí”Œë¦¿ì„ í™œìš©í•´ì„œ, ìž„ì˜ì˜ Receiverì—ê²Œ ëª…ë ¹ì„ ì „ë‹¬í•  ìˆ˜ ìžˆë„ë¡ í•œë‹¤. */
 template <typename Receiver>
 class GenericCommand : public Command
 {
@@ -88,13 +88,13 @@ private:
 };
 
 /*
-    Command PatternÀº ¿äÃ» ÀÚÃ¼¸¦ Ä¸½¶È­ÇÏ±â À§ÇØ »ç¿ëÇÕ´Ï´Ù.
-    Invoker (¸í·ÉÀ» ¿äÃ»ÇÏ´Â Ãø) Àº Receiver (½ÇÁ¦ ¸í·ÉÀ» ¼öÇàÇÏ´Â Ãø) ¿¡ ´ëÇÑ ¾î¶°ÇÑ
-    ±¸Ã¼ÀûÀÎ Á¤º¸¸¦ ¾Ë°í ÀÖÁö ¾Ê¾Æµµ µË´Ï´Ù. Áï, Invoker¿Í ReceiverÀÇ °áÇÕÀ» ¾ø¾Ö´Â
-    È¿°ú°¡ ÀÖ½À´Ï´Ù.
-    Receiver¿¡ ´ëÇÑ ±¸Ã¼ÀûÀÎ Á¤º¸¿Í ÀÇÁ¸¼ºÀº Concrete Command Å¬·¡½º¿¡ µé¾î°¡°Ô µÇ°í,
-    Ãß»óÈ­µÈ º£ÀÌ½º Å¬·¡½ºÀÎ Command Å¬·¡½º´Â Receiver¿¡ ´ëÇÑ ÀÇÁ¸¼ºÀ» °¡ÁöÁö ¾Ê½À´Ï´Ù.
-    µû¶ó¼­, Invoker ÃøÀº Receiver¿¡ ´ëÇÑ Á÷Á¢ÀûÀÎ ÀÇÁ¸¼º ¾øÀÌ ¸í·ÉÀ» ¿äÃ»ÇÒ ¼ö ÀÖ°Ô µË´Ï´Ù.
+    Command Patternì€ ìš”ì²­ ìžì²´ë¥¼ ìº¡ìŠí™”í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•©ë‹ˆë‹¤.
+    Invoker (ëª…ë ¹ì„ ìš”ì²­í•˜ëŠ” ì¸¡) ì€ Receiver (ì‹¤ì œ ëª…ë ¹ì„ ìˆ˜í–‰í•˜ëŠ” ì¸¡) ì— ëŒ€í•œ ì–´ë– í•œ
+    êµ¬ì²´ì ì¸ ì •ë³´ë¥¼ ì•Œê³  ìžˆì§€ ì•Šì•„ë„ ë©ë‹ˆë‹¤. ì¦‰, Invokerì™€ Receiverì˜ ê²°í•©ì„ ì—†ì• ëŠ”
+    íš¨ê³¼ê°€ ìžˆìŠµë‹ˆë‹¤.
+    Receiverì— ëŒ€í•œ êµ¬ì²´ì ì¸ ì •ë³´ì™€ ì˜ì¡´ì„±ì€ Concrete Command í´ëž˜ìŠ¤ì— ë“¤ì–´ê°€ê²Œ ë˜ê³ ,
+    ì¶”ìƒí™”ëœ ë² ì´ìŠ¤ í´ëž˜ìŠ¤ì¸ Command í´ëž˜ìŠ¤ëŠ” Receiverì— ëŒ€í•œ ì˜ì¡´ì„±ì„ ê°€ì§€ì§€ ì•ŠìŠµë‹ˆë‹¤.
+    ë”°ë¼ì„œ, Invoker ì¸¡ì€ Receiverì— ëŒ€í•œ ì§ì ‘ì ì¸ ì˜ì¡´ì„± ì—†ì´ ëª…ë ¹ì„ ìš”ì²­í•  ìˆ˜ ìžˆê²Œ ë©ë‹ˆë‹¤.
 */
 
 int main()

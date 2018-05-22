@@ -118,7 +118,7 @@ private:
 };
 
 /*
-    Factory Method PatternÀº ¸Å°³º¯¼öÈ­µÇ¾î »ç¿ëµÉ ¼öµµ ÀÖ½À´Ï´Ù.
+    Factory Method Patternì€ ë§¤ê°œë³€ìˆ˜í™”ë˜ì–´ ì‚¬ìš©ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤.
 */
 
 int main()

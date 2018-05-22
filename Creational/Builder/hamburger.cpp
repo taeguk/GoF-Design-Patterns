@@ -151,13 +151,13 @@ private:
 };
 
 /*
-    º¹ÇÕ °´Ã¼ÀÇ »ý¼º ¾Ë°í¸®Áò°ú ÇÕ¼ºµÇ´Â ¿ä¼Ò °´Ã¼µéÀÇ Á¶¸³ ¹æ¹ýÀÌ µ¶¸³ÀûÀÌ°í,
-        ÇÕ¼º°úÁ¤À» ¼û±â°í ½Í°í, º¹ÀâÇÑ °´Ã¼¸¦ ´Ü°èÀûÀ¸·Î »ý¼ºÇÏ°í ½ÍÀ» °æ¿ì¿¡,
-        Builder PatternÀÌ ¾î¿ï¸³´Ï´Ù.
+    ë³µí•© ê°ì²´ì˜ ìƒì„± ì•Œê³ ë¦¬ì¦˜ê³¼ í•©ì„±ë˜ëŠ” ìš”ì†Œ ê°ì²´ë“¤ì˜ ì¡°ë¦½ ë°©ë²•ì´ ë…ë¦½ì ì´ê³ ,
+        í•©ì„±ê³¼ì •ì„ ìˆ¨ê¸°ê³  ì‹¶ê³ , ë³µìž¡í•œ ê°ì²´ë¥¼ ë‹¨ê³„ì ìœ¼ë¡œ ìƒì„±í•˜ê³  ì‹¶ì„ ê²½ìš°ì—,
+        Builder Patternì´ ì–´ìš¸ë¦½ë‹ˆë‹¤.
 
-    º¹ÀâÇÑ °´Ã¼¸¦ »ý¼ºÇØ¾ß ÇÒ ¶§, Builder ÆÐÅÏ°ú Abstract Factory ÆÐÅÏÀº ¾î´ÀÁ¤µµ À¯»çÇÑ Á¡ÀÌ ÀÖ½À´Ï´Ù.
-    ¸¸¾à, »ý¼º°úÁ¤(¿ä¼Ò °´Ã¼µéÀÇ ÇÕ¼º°úÁ¤)µéÀ» ¼û±â°í ½Í°í, º¹ÀâÇÑ °´Ã¼°¡ ¿Ï¼ºµÈ ÈÄ ¹ÝÈ¯µÇ¾î¾ß ÇÏ´Â °æ¿ì¶ó¸é,
-        Builder Pattern ÀÌ ´õ ¾î¿ï¸³´Ï´Ù.
+    ë³µìž¡í•œ ê°ì²´ë¥¼ ìƒì„±í•´ì•¼ í•  ë•Œ, Builder íŒ¨í„´ê³¼ Abstract Factory íŒ¨í„´ì€ ì–´ëŠì •ë„ ìœ ì‚¬í•œ ì ì´ ìžˆìŠµë‹ˆë‹¤.
+    ë§Œì•½, ìƒì„±ê³¼ì •(ìš”ì†Œ ê°ì²´ë“¤ì˜ í•©ì„±ê³¼ì •)ë“¤ì„ ìˆ¨ê¸°ê³  ì‹¶ê³ , ë³µìž¡í•œ ê°ì²´ê°€ ì™„ì„±ëœ í›„ ë°˜í™˜ë˜ì–´ì•¼ í•˜ëŠ” ê²½ìš°ë¼ë©´,
+        Builder Pattern ì´ ë” ì–´ìš¸ë¦½ë‹ˆë‹¤.
 */
 
 int main()

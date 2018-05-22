@@ -51,10 +51,10 @@ private:
 };
 
 /*
-    ·±Å¸ÀÓ¿¡ Àü·«À» º¯°æÇÒ ÇÊ¿ä°¡ ¾ø´Â °æ¿ì, ÅÛÇÃ¸´À» È°¿ëÇÏ¿© Á¤ÀûÀ¸·Î Àü·«ÀÌ
-    binding µÇµµ·Ï ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-    ÀÌ °æ¿ì, ºñ·Ï À¯¿¬¼ºÀº ¶³¾îÁöÁö¸¸, °¡»ó ÇÔ¼ö È£Ãâ¿¡ µû¸¥ overhead°¡
-    ¹ß»ýÇÏÁö ¾Ê´Â ÀÌÁ¡ÀÌ ÀÖ½À´Ï´Ù.
+    ëŸ°íƒ€ìž„ì— ì „ëžµì„ ë³€ê²½í•  í•„ìš”ê°€ ì—†ëŠ” ê²½ìš°, í…œí”Œë¦¿ì„ í™œìš©í•˜ì—¬ ì •ì ìœ¼ë¡œ ì „ëžµì´
+    binding ë˜ë„ë¡ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+    ì´ ê²½ìš°, ë¹„ë¡ ìœ ì—°ì„±ì€ ë–¨ì–´ì§€ì§€ë§Œ, ê°€ìƒ í•¨ìˆ˜ í˜¸ì¶œì— ë”°ë¥¸ overheadê°€
+    ë°œìƒí•˜ì§€ ì•ŠëŠ” ì´ì ì´ ìžˆìŠµë‹ˆë‹¤.
 */
 template <typename TextRestrictionStrategy>
 class TextRestricter

@@ -125,12 +125,12 @@ private:
 };
 
 /*
-    Æ¯Á¤ Á¦Ç°µéÀ» ¸ð¾Æ¼­ Á¦Ç° ±º ÇüÅÂ·Î °ü¸®ÇÏ°í, Á¦Ç° ±º ³»¿¡¼­ »ý¼ºÀ» À¯µµÇÏ¿© ÀÏ°ü¼ºÀ» ÁöÅ°°í ½ÍÀº °æ¿ì,
-        Abstract Factory ÆÐÅÏÀÌ ¾î¿ï¸³´Ï´Ù.
+    íŠ¹ì • ì œí’ˆë“¤ì„ ëª¨ì•„ì„œ ì œí’ˆ êµ° í˜•íƒœë¡œ ê´€ë¦¬í•˜ê³ , ì œí’ˆ êµ° ë‚´ì—ì„œ ìƒì„±ì„ ìœ ë„í•˜ì—¬ ì¼ê´€ì„±ì„ ì§€í‚¤ê³  ì‹¶ì€ ê²½ìš°,
+        Abstract Factory íŒ¨í„´ì´ ì–´ìš¸ë¦½ë‹ˆë‹¤.
 
-    º¹ÀâÇÑ °´Ã¼¸¦ »ý¼ºÇØ¾ß ÇÒ ¶§, Builder ÆÐÅÏ°ú Abstract Factory ÆÐÅÏÀº ¾î´ÀÁ¤µµ À¯»çÇÑ Á¡ÀÌ ÀÖ½À´Ï´Ù.
-    ¸¸¾à, Á¦Ç° ±º³»ÀÇ Á¦Ç°µé °¢°¢ÀÌ °³º°ÀûÀ¸·Î »ý¼ºµÉ ÇÊ¿ä¼ºÀÌ ÀÖ°í, Á» ´õ ¼³°è°¡ À¯¿¬ÇÒ ÇÊ¿ä¼ºÀÌ ÀÖ´Ù¸é,
-        Abstract Factory Pattern ÀÌ ´õ ¾î¿ï¸³´Ï´Ù.
+    ë³µìž¡í•œ ê°ì²´ë¥¼ ìƒì„±í•´ì•¼ í•  ë•Œ, Builder íŒ¨í„´ê³¼ Abstract Factory íŒ¨í„´ì€ ì–´ëŠì •ë„ ìœ ì‚¬í•œ ì ì´ ìžˆìŠµë‹ˆë‹¤.
+    ë§Œì•½, ì œí’ˆ êµ°ë‚´ì˜ ì œí’ˆë“¤ ê°ê°ì´ ê°œë³„ì ìœ¼ë¡œ ìƒì„±ë  í•„ìš”ì„±ì´ ìžˆê³ , ì¢€ ë” ì„¤ê³„ê°€ ìœ ì—°í•  í•„ìš”ì„±ì´ ìžˆë‹¤ë©´,
+        Abstract Factory Pattern ì´ ë” ì–´ìš¸ë¦½ë‹ˆë‹¤.
 */
 
 int main()
